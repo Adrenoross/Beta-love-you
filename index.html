@@ -299,25 +299,12 @@
             font-weight: 600;
         }
 
-        /* Gallery/Image showcase */
-        .image-showcase {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .image-card {
-            background: white;
-            border: 3px solid var(--mint);
-            border-radius: 15px;
-            padding: 1rem;
+        /* Decorative divider */
+        .divider {
             text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .image-card:hover {
-            transform: rotate(3deg) scale(1.05);
-            box-shadow: 0 12px 25px rgba(168, 240, 216, 0.2);
+            margin: 2.5rem 0;
+            font-size: 1.5rem;
+            opacity: 0.5;
         }
 
         /* Floating singing element */
@@ -337,6 +324,7 @@
             z-index: 100;
             box-shadow: 0 10px 25px rgba(255, 179, 217, 0.4);
             border: 3px solid white;
+            cursor: pointer;
         }
 
         .floating-singer::before {
@@ -359,7 +347,7 @@
             animation: musicFloat 2s ease-in-out infinite 0.3s;
         }
 
-        /* Text decorations */
+        /* Decorative text */
         .decorative-text {
             text-align: center;
             font-size: 0.9rem;
@@ -367,14 +355,6 @@
             margin: 1.5rem 0;
             font-style: italic;
             opacity: 0.7;
-        }
-
-        /* Decorative divider */
-        .divider {
-            text-align: center;
-            margin: 2.5rem 0;
-            font-size: 1.5rem;
-            opacity: 0.5;
         }
 
         /* Animations */
@@ -619,4 +599,37 @@
                 <p>You're so special. Your laugh, your authenticity, the way you listen, the way you care—everything about you makes my heart feel full. You make distance feel small because what we have feels so real, so genuine.</p>
                 <p>I love learning about you. Your family, your dreams, your favorite song, the horror movies you love, your beautiful appreciation for blue, grey, hibiscus, and lily of the valley. Every detail about you is becoming precious to me.</p>
                 <p>Thank you for taking a chance on someone you met online. Thank you for being yourself. Thank you for making this week absolutely unforgettable.</p>
-               
+                <p>Happy birthday, Hikari. You deserve all the happiness in the world. And I'm so excited to spend more time with you, to get to know you even better, and to see where this beautiful connection takes us.</p>
+                <p>I'll be singing in the background of your day, celebrating YOU. 🎵💙</p>
+                <div class="signature">With all my heart,<br>Someone who's already fallen for you</div>
+            </div>
+        </section>
+
+        <div class="divider">✿ ♪ ✿ ♪ ✿</div>
+
+        <div style="text-align: center; padding: 2rem; color: var(--dark); font-size: 0.9rem; opacity: 0.7;">
+            <p>Made with love, for the sweetest girl 💕</p>
+            <p>Happy Birthday, Hikari! 🎂✨</p>
+        </div>
+    </main>
+
+    <!-- Floating Singer Element -->
+    <div class="floating-singer" title="singing happy birthday to you! 🎵"></div>
+
+    <script>
+        // Smooth scroll for nav links
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        console.log('Website loaded! The floating singer is visible in the bottom right corner.');
+        console.log('Music setup: To add music, upload ill-take-care-of-you.mp3 to your GitHub repo.');
+    </script>
+</body>
+</html>
