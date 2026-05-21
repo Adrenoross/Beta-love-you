@@ -935,19 +935,25 @@ const music = document.getElementById('bg-music');
 const musicBtn = document.getElementById('music-btn');
 let playing = false;
 
-function startMusic() {
-  music.src = 'music.mp3';
+function tryPlay(paths, index) {
+  if(index >= paths.length) { musicBtn.textContent = '🎵'; return; }
+  music.src = paths[index];
   music.load();
-  const playPromise = music.play();
-  if(playPromise !== undefined) {
-    playPromise.then(() => {
-      playing = true;
-      musicBtn.textContent = '⏸️';
-    }).catch(() => {
-      playing = false;
-      musicBtn.textContent = '🎵';
-    });
-  }
+  music.play().then(() => {
+    playing = true;
+    musicBtn.textContent = '⏸️';
+  }).catch(() => {
+    tryPlay(paths, index + 1);
+  });
+}
+
+function startMusic() {
+  tryPlay([
+    'music.mp3',
+    './music.mp3',
+    '/Beta-love-you/music.mp3',
+    'https://adrenoross.github.io/Beta-love-you/music.mp3'
+  ], 0);
 }
 
 musicBtn.addEventListener('click', () => {
