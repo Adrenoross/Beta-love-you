@@ -1,473 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Hikari ✿</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --bg: #fff5f8;
-            --pink: #ffb3d9;
-            --light-pink: #ffc0e0;
-            --pastel-pink: #ffd9e8;
-            --mint: #b8f3d8;
-            --lavender: #e6d4f5;
-            --dark: #5a4a6e;
-        }
-
-        body {
-            font-family: 'Quicksand', sans-serif;
-            background: linear-gradient(135deg, var(--bg), var(--mint), var(--lavender));
-            color: var(--dark);
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        .page-frame {
-            position: fixed;
-            inset: 10px;
-            border: 3px dashed var(--pink);
-            border-radius: 20px;
-            pointer-events: none;
-            z-index: 10;
-        }
-
-        main {
-            position: relative;
-            z-index: 2;
-            padding: 60px 20px;
-        }
-
-        .header {
-            text-align: center;
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            border: 4px solid var(--pink);
-            margin-bottom: 2rem;
-        }
-
-        .header h1 {
-            font-family: 'Fredoka', sans-serif;
-            font-size: 2.5rem;
-            background: linear-gradient(135deg, var(--pink), var(--mint));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        nav {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-bottom: 2rem;
-        }
-
-        nav a {
-            background: white;
-            padding: 0.6rem 1rem;
-            border-radius: 12px;
-            border: 2px solid var(--pink);
-            text-decoration: none;
-            color: var(--dark);
-        }
-
-        section {
-            max-width: 900px;
-            margin: auto;
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            border: 3px solid var(--light-pink);
-            margin-bottom: 2rem;
-        }
-
-        h2 {
-            text-align: center;
-            color: var(--pink);
-            margin-bottom: 1rem;
-        }
-
-        .card {
-            background: linear-gradient(135deg, #ffe6f2, #e6fff5);
-            padding: 1rem;
-            margin: 1rem 0;
-            border-radius: 12px;
-        }
-
-        .floating-singer {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            background: var(--pink);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            cursor: pointer;
-            animation: float 3s ease-in-out infinite;
-            z-index: 100;
-        }
-
-        @keyframes float {
-            0%,100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        #overlay {
-            position: fixed;
-            inset: 0;
-            background: black;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            cursor: pointer;
-            z-index: 9999;
-        }
-    </style>
-</head>
-
-<body>
-
-<div class="page-frame"></div>
-
-<!-- MUSIC -->
-<audio id="bg-music" loop>
-    <source src="./song.mp3" type="audio/mpeg">
-</audio>
-
-<!-- OVERLAY -->
-<div id="overlay" onclick="startMusic()">
-    Tap anywhere 💗
-</div>
-
-<main>
-
-    <div class="header">
-        <h1>✿ Happy Birthday Hikari ✿</h1>
-        <p>June 18 🎂💙</p>
-    </div>
-
-    <nav>
-        <a href="#about">About</a>
-        <a href="#story">Story</a>
-        <a href="#wishes">Wishes</a>
-        <a href="#letter">Letter</a>
-    </nav>
-
-    <section id="about">
-        <h2>About Her</h2>
-        <div class="card">💙 Blue & grey lover</div>
-        <div class="card">🎵 Loves "All That Matters"</div>
-        <div class="card">🎬 Horror movie fan</div>
-    </section>
-
-    <section id="story">
-        <h2>Our Story</h2>
-        <div class="card">We met recently… and everything changed.</div>
-        <div class="card">Every chat feels special.</div>
-    </section>
-
-    <section id="wishes">
-        <h2>Wishes</h2>
-        <div class="card">Hope you get endless happiness 💕</div>
-        <div class="card">You deserve the world 🌸</div>
-    </section>
-
-    <section id="letter">
-        <h2>Letter</h2>
-        <div class="card">
-            <p>Happy Birthday Hikari 💙</p>
-            <p>You mean a lot to me already.</p>
-        </div>
-    </section>
-
-</main>
-
-<div class="floating-singer" onclick="toggleMusic()">🎵</div>
-
-<script>
-function startMusic() {
-    const music = document.getElementById("bg-music");
-    music.play();
-    document.getElementById("overlay").style.display = "none";
-}
-
-function toggleMusic() {
-    const music = document.getElementById("bg-music");
-    if (music.paused) {
-        music.play();
-    } else {
-        music.pause();
-    }
-}
-
-// smooth scroll
-document.querySelectorAll('nav a').forEach(a => {
-    a.addEventListener('click', e => {
-        e.preventDefault();
-        const target = document.querySelector(a.getAttribute('href'));
-        if (target) target.scrollIntoView({ behavior: 'smooth' });
-    });
-});
-</script>
-
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday Hikari ✿</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
-
-<style>
-*{margin:0;padding:0;box-sizing:border-box;}
-
-body{
-    font-family:'Quicksand',sans-serif;
-    background: linear-gradient(135deg,#fff5f8,#d5f7e8,#e6d4f5);
-    overflow-x:hidden;
-    color:#5a4a6e;
-}
-
-/* 🌸 PETALS */
-.petal {
-    position: fixed;
-    top: -10px;
-    width: 12px;
-    height: 12px;
-    background: pink;
-    border-radius: 50%;
-    opacity: 0.7;
-    animation: fall linear infinite;
-    z-index: 1;
-}
-
-@keyframes fall {
-    to {
-        transform: translateY(110vh) rotate(360deg);
-    }
-}
-
-/* FRAME */
-.frame{
-    position:fixed;
-    inset:10px;
-    border:2px dashed #ffb3d9;
-    pointer-events:none;
-    z-index:10;
-}
-
-/* HEADER MOBILE ROMANTIC UI */
-header{
-    text-align:center;
-    padding:60px 20px 30px;
-}
-
-h1{
-    font-family:'Fredoka';
-    font-size:2rem;
-    background:linear-gradient(90deg,#ffb3d9,#b8f3d8);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-}
-
-#typing{
-    margin-top:10px;
-    font-size:1rem;
-    min-height:20px;
-}
-
-/* NAV */
-nav{
-    display:flex;
-    gap:8px;
-    justify-content:center;
-    flex-wrap:wrap;
-    padding:10px;
-}
-
-nav a{
-    background:white;
-    padding:8px 12px;
-    border-radius:12px;
-    border:1px solid #ffb3d9;
-    text-decoration:none;
-    font-size:12px;
-}
-
-/* SECTIONS */
-section{
-    max-width:900px;
-    margin:20px auto;
-    background:white;
-    padding:20px;
-    border-radius:18px;
-    border:2px solid #ffd9e8;
-}
-
-/* 💌 hidden message */
-.hidden-message{
-    opacity:0;
-    transform:translateY(20px);
-    transition:1s;
-    background:#fff0f6;
-    padding:15px;
-    border-radius:12px;
-    border:1px dashed #ffb3d9;
-}
-
-.hidden-message.show{
-    opacity:1;
-    transform:translateY(0);
-}
-
-/* FLOAT BUTTON */
-.music{
-    position:fixed;
-    bottom:20px;
-    right:20px;
-    width:55px;
-    height:55px;
-    border-radius:50%;
-    background:#ffb3d9;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:22px;
-    z-index:100;
-}
-</style>
-</head>
-
-<body>
-
-<div class="frame"></div>
-
-<!-- 🌸 PETALS -->
-<script>
-function createPetal(){
-    const petal=document.createElement("div");
-    petal.classList.add("petal");
-    petal.style.left=Math.random()*100+"vw";
-    petal.style.animationDuration=(3+Math.random()*5)+"s";
-    document.body.appendChild(petal);
-
-    setTimeout(()=>petal.remove(),8000);
-}
-setInterval(createPetal,200);
-</script>
-
-<!-- 🎵 MUSIC -->
-<audio id="bg-music" loop>
-<source src="./song.mp3" type="audio/mpeg">
-</audio>
-
-<div class="music" onclick="document.getElementById('bg-music').play()">🎵</div>
-
-<!-- HEADER -->
-<header>
-<h1>✿ Happy Birthday Hikari ✿</h1>
-<div id="typing"></div>
-</header>
-
-<!-- NAV -->
-<nav>
-<a href="#about">About</a>
-<a href="#story">Story</a>
-<a href="#letter">Letter 💌</a>
-</nav>
-
-<!-- ABOUT -->
-<section id="about">
-<h2>About Her</h2>
-<p>Blue • Grey • Horror movies • All That Matters 🎵</p>
-</section>
-
-<!-- STORY -->
-<section id="story">
-<h2>Our Story</h2>
-<p>We met recently… but it already feels special.</p>
-</section>
-
-<!-- LETTER (UNLOCK EFFECT) -->
-<section id="letter">
-<h2>Letter</h2>
-
-<div class="hidden-message" id="message">
-💌  
-Happy Birthday Hikari…  
-You already mean a lot to me.  
-</div>
-
-</section>
-
-<!-- SCRIPTS -->
-<script>
-
-/* ⌨️ TYPING INTRO */
-const text="You make this world feel softer… ✨";
-let i=0;
-function type(){
-    if(i<text.length){
-        document.getElementById("typing").innerHTML+=text.charAt(i);
-        i++;
-        setTimeout(type,60);
-    }
-}
-type();
-
-/* 💌 UNLOCK ON SCROLL */
-const msg=document.getElementById("message");
-
-const observer=new IntersectionObserver(entries=>{
-    entries.forEach(entry=>{
-        if(entry.isIntersecting){
-            msg.classList.add("show");
-        }
-    });
-},{threshold:0.5});
-
-observer.observe(document.getElementById("letter"));
-
-/* NAV SMOOTH SCROLL */
-document.querySelectorAll("nav a").forEach(a=>{
-a.addEventListener("click",e=>{
-e.preventDefault();
-document.querySelector(a.getAttribute("href"))
-.scrollIntoView({behavior:"smooth"});
-});
-});
-
-</script>
-
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday Hikari ✿</title>
+<title>For Hikari ✿</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -477,8 +13,8 @@ document.querySelector(a.getAttribute("href"))
 body{
     font-family:'Quicksand',sans-serif;
     background:linear-gradient(135deg,#fff5f8,#d5f7e8,#e6d4f5);
-    overflow-x:hidden;
     color:#5a4a6e;
+    overflow-x:hidden;
 }
 
 /* 🌸 PETALS */
@@ -487,7 +23,7 @@ body{
     top:-10px;
     width:10px;
     height:10px;
-    background:pink;
+    background:radial-gradient(circle,#ffb3d9,#fff);
     border-radius:50%;
     opacity:.7;
     animation:fall linear infinite;
@@ -497,30 +33,67 @@ body{
     to{transform:translateY(110vh) rotate(360deg);}
 }
 
-/* FRAME */
-.frame{
-    position:fixed;
-    inset:10px;
-    border:2px dashed #ffb3d9;
-    pointer-events:none;
-    z-index:10;
-}
-
-/* 💖 LOVE METER */
+/* 💖 LOVE BAR */
 #loveBar{
     position:fixed;
     top:0;
     left:0;
     height:4px;
     width:0%;
-    background:linear-gradient(90deg,#ffb3d9,#b8f3d8);
+    background:linear-gradient(90deg,#ffb3d9,#ff6fae,#b8f3d8);
     z-index:9999;
+}
+
+/* FRAME */
+.frame{
+    position:fixed;
+    inset:10px;
+    border:2px dashed #ffb3d9;
+    border-radius:18px;
+    pointer-events:none;
+    z-index:10;
+}
+
+/* 🔒 LOCK SCREEN */
+#lock{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.92);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    z-index:99999;
+    color:white;
+    text-align:center;
+}
+
+#lock input{
+    margin-top:10px;
+    padding:10px;
+    border:none;
+    border-radius:10px;
+}
+
+#lock button{
+    margin-top:10px;
+    padding:10px 15px;
+    border:none;
+    border-radius:10px;
+    background:#ffb3d9;
+}
+
+.shake{animation:shake .3s;}
+@keyframes shake{
+    0%,100%{transform:translateX(0);}
+    25%{transform:translateX(-5px);}
+    50%{transform:translateX(5px);}
 }
 
 /* HEADER */
 header{
     text-align:center;
-    padding:70px 20px 20px;
+    padding:80px 20px 20px;
 }
 
 h1{
@@ -533,54 +106,8 @@ h1{
 
 #typing{
     margin-top:10px;
-    font-size:1rem;
     min-height:20px;
-}
-
-/* LOCK SCREEN 🔒 */
-#lockScreen{
-    position:fixed;
-    inset:0;
-    background:black;
-    color:white;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    z-index:99999;
-}
-
-#lockScreen input{
-    padding:10px;
-    border-radius:10px;
-    border:none;
-    margin-top:10px;
-}
-
-#lockScreen button{
-    margin-top:10px;
-    padding:8px 12px;
-    border:none;
-    border-radius:10px;
-    background:#ffb3d9;
-}
-
-/* NAV */
-nav{
-    display:flex;
-    gap:8px;
-    justify-content:center;
-    flex-wrap:wrap;
-    padding:10px;
-}
-
-nav a{
-    background:white;
-    padding:8px 12px;
-    border-radius:12px;
-    border:1px solid #ffb3d9;
-    text-decoration:none;
-    font-size:12px;
+    text-shadow:0 0 10px rgba(255,179,217,0.4);
 }
 
 /* SECTIONS */
@@ -593,158 +120,213 @@ section{
     border:2px solid #ffd9e8;
 }
 
-/* 💌 hidden message */
-.hidden-message{
-    opacity:0;
-    transform:translateY(20px);
-    transition:1s;
-    background:#fff0f6;
-    padding:15px;
-    border-radius:12px;
-    border:1px dashed #ffb3d9;
-}
-.hidden-message.show{
-    opacity:1;
-    transform:translateY(0);
-}
-
-/* 📸 CAROUSEL */
-.carousel{
+/* GALLERY */
+.gallery{
     display:flex;
+    gap:10px;
     overflow-x:auto;
     scroll-snap-type:x mandatory;
-    gap:10px;
+    padding:10px 0;
 }
-.carousel img{
-    width:100%;
-    max-width:250px;
+
+.gallery img{
+    width:160px;
+    height:160px;
+    object-fit:cover;
     border-radius:15px;
     scroll-snap-align:center;
 }
 
-/* MUSIC */
-.music{
+/* UPLOAD */
+.upload{
+    text-align:center;
+    margin-bottom:10px;
+}
+
+/* 💌 LETTER */
+.letter{
+    line-height:1.8;
+    font-size:15px;
+}
+
+/* 💌 CONFESSION */
+#confession{
     position:fixed;
-    bottom:20px;
-    right:20px;
-    width:55px;
-    height:55px;
-    border-radius:50%;
-    background:#ffb3d9;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:22px;
-    z-index:100;
+    bottom:-200px;
+    left:50%;
+    transform:translateX(-50%);
+    background:#ff6fae;
+    color:white;
+    padding:18px;
+    border-radius:15px;
+    width:80%;
+    max-width:320px;
+    text-align:center;
+    transition:.6s;
+    z-index:9999;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+#confession.show{
+    bottom:40px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- 💖 LOVE BAR -->
+<div class="frame"></div>
 <div id="loveBar"></div>
 
-<!-- 🌸 PETALS -->
+<!-- 🔒 LOCK -->
+<div id="lock">
+<h2>Enter Her Name 💖</h2>
+<p>to unlock this world</p>
+<input id="nameInput" placeholder="type name...">
+<button onclick="unlock()">Unlock</button>
+<p id="error"></p>
+</div>
+
+<!-- 🎵 MUSIC -->
+<audio id="music" loop>
+<source src="./song.mp3">
+</audio>
+
+<header>
+<h1>✿ For Hikari ✿</h1>
+<div id="typing"></div>
+</header>
+
+<section>
+<h2>Upload Memories 💖</h2>
+<div class="upload">
+<input type="file" id="fileInput" multiple accept="image/*">
+</div>
+<div class="gallery" id="gallery"></div>
+</section>
+
+<section>
+<h2>About Her 🌸</h2>
+<p>
+💙 Fav color: Blue & Grey<br>
+🎬 Genre: Horror movies<br>
+🎵 Fav song: All That Matters<br>
+🌺 Flowers: Hibiscus & Lily of the Valley<br>
+🥲 Allergic to cabbage & tea leaves<br>
+🎂 Birthday: June 18<br>
+👨‍👩‍👧‍👧 4 siblings (2 elder bros, 1 elder sis, 1 younger sis)
+</p>
+</section>
+
+<section>
+<h2>Letter 💌</h2>
+<div class="letter" id="letter">
+Hey Hikari,<br><br>
+
+I don’t even know how to start this properly, but I’ll try.<br><br>
+
+You’re someone who feels warm even through a screen. It’s crazy how someone I met not long ago already feels this important to me.<br><br>
+
+I remember everything you told me — your favorite color being blue and grey, how you love horror movies, and how “All That Matters” feels like your song. I don’t know why, but now whenever I hear it, it reminds me of you.<br><br>
+
+You like hibiscus and lily of the valley — soft, pretty flowers, just like your vibe.<br><br>
+
+And I also remember the small things… like you being allergic to cabbage and tea leaves 🥲💔 I promise I’ll never forget that.<br><br>
+
+You have such a beautiful family too — 2 elder brothers, 1 elder sister, and a younger sister. It sounds loud, chaotic, and full of life… kind of like something you’d belong in perfectly.<br><br>
+
+I hope your birthday on June 18 is always special, even if I’m not always there in person.<br><br>
+
+I don’t know what this is becoming between us, but I do know I like talking to you. A lot.<br><br>
+
+And maybe… I like you more than I planned to.<br><br>
+
+</div>
+</section>
+
+<!-- 💌 CONFESSION -->
+<div id="confession">
+I think I like you more than I expected… 💖
+</div>
+
 <script>
+
+/* PETALS */
 function petal(){
     const p=document.createElement("div");
-    p.classList.add("petal");
+    p.className="petal";
     p.style.left=Math.random()*100+"vw";
     p.style.animationDuration=(3+Math.random()*5)+"s";
     document.body.appendChild(p);
     setTimeout(()=>p.remove(),8000);
 }
 setInterval(petal,200);
-</script>
 
-<!-- 🔒 LOCK SCREEN -->
-<div id="lockScreen">
-<h2>Enter Her Name 💖</h2>
-<input id="nameInput" placeholder="Type name...">
-<button onclick="unlock()">Unlock</button>
-<p id="error"></p>
-</div>
-
-<!-- 🎵 MUSIC -->
-<audio id="bg-music" loop>
-<source src="./song.mp3" type="audio/mpeg">
-</audio>
-
-<div class="music" onclick="document.getElementById('bg-music').play()">🎵</div>
-
-<div class="frame"></div>
-
-<header>
-<h1>✿ Happy Birthday Hikari ✿</h1>
-<div id="typing"></div>
-</header>
-
-<nav>
-<a href="#about">About</a>
-<a href="#gallery">Gallery</a>
-<a href="#letter">Letter 💌</a>
-</nav>
-
-<section id="about">
-<h2>About Her</h2>
-<p>Blue • Grey • Horror movies • Music 🎵</p>
-</section>
-
-<!-- 📸 GALLERY -->
-<section id="gallery">
-<h2>Memories</h2>
-<div class="carousel">
-<img src="https://picsum.photos/300/200?1">
-<img src="https://picsum.photos/300/200?2">
-<img src="https://picsum.photos/300/200?3">
-</div>
-</section>
-
-<section id="letter">
-<h2>Letter</h2>
-
-<div class="hidden-message" id="message">
-💌 Happy Birthday Hikari… You already mean a lot to me.
-</div>
-
-</section>
-
-<script>
-
-/* LOCK SCREEN */
+/* LOCK */
 function unlock(){
-    const name=document.getElementById("nameInput").value.trim().toLowerCase();
-    if(name==="hikari"){
-        document.getElementById("lockScreen").style.display="none";
+    const val=document.getElementById("nameInput").value.toLowerCase().trim();
+    if(val==="hikari"){
+        document.getElementById("lock").style.display="none";
+        document.getElementById("music").play();
     }else{
         document.getElementById("error").innerText="Wrong name 💔";
+        document.getElementById("lock").classList.add("shake");
+        setTimeout(()=>document.getElementById("lock").classList.remove("shake"),300);
     }
 }
 
 /* TYPING */
-const text="You make everything softer… ✨";
+const text="You make everything feel softer… ✨";
 let i=0;
 function type(){
     if(i<text.length){
-        document.getElementById("typing").innerHTML+=text.charAt(i++);
+        document.getElementById("typing").innerHTML+=text[i++];
         setTimeout(type,60);
     }
 }
 type();
 
-/* SCROLL REVEAL */
-const msg=document.getElementById("message");
-new IntersectionObserver(e=>{
-    if(e[0].isIntersecting) msg.classList.add("show");
-}).observe(document.getElementById("letter"));
+/* UPLOAD + SAVE */
+const input=document.getElementById("fileInput");
+const gallery=document.getElementById("gallery");
 
-/* LOVE METER */
+let saved=JSON.parse(localStorage.getItem("imgs")||"[]");
+
+function render(){
+    gallery.innerHTML="";
+    saved.forEach(src=>{
+        const img=document.createElement("img");
+        img.src=src;
+        gallery.appendChild(img);
+    });
+}
+render();
+
+input.addEventListener("change",e=>{
+    [...e.target.files].forEach(file=>{
+        const reader=new FileReader();
+        reader.onload=function(ev){
+            saved.push(ev.target.result);
+            localStorage.setItem("imgs",JSON.stringify(saved));
+            render();
+        };
+        reader.readAsDataURL(file);
+    });
+});
+
+/* LOVE BAR */
 window.addEventListener("scroll",()=>{
-    const scrollTop=document.documentElement.scrollTop;
-    const height=document.documentElement.scrollHeight-window.innerHeight;
-    const scrolled=(scrollTop/height)*100;
-    document.getElementById("loveBar").style.width=scrolled+"%";
+    const h=document.documentElement.scrollHeight-window.innerHeight;
+    const s=(window.scrollY/h)*100;
+    document.getElementById("loveBar").style.width=s+"%";
+
+    /* CONFESSION AT 80% */
+    const pop=document.getElementById("confession");
+    if(s>80){
+        pop.classList.add("show");
+    }else{
+        pop.classList.remove("show");
+    }
 });
 
 </script>
