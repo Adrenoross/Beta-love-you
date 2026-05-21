@@ -760,4 +760,368 @@
   </section>
 
   <!-- ABOUT HER -->
-  <se
+  <section class="about-section">
+    <h2 class="section-title fade-in-up">All About Her 🌺</h2>
+    <p class="section-subtitle fade-in-up">little things that make her, her</p>
+    <div class="cards-grid">
+      <div class="about-card fade-in-up" style="animation-delay:0.1s">
+        <span class="card-icon">💙</span>
+        <div class="card-label">Colors</div>
+        <div class="card-value">Blue & Grey</div>
+      </div>
+      <div class="about-card glow-lavender fade-in-up" style="animation-delay:0.15s">
+        <span class="card-icon">🎬</span>
+        <div class="card-label">Movies</div>
+        <div class="card-value">Horror Fan</div>
+      </div>
+      <div class="about-card fade-in-up" style="animation-delay:0.2s">
+        <span class="card-icon">🌺</span>
+        <div class="card-label">Flowers</div>
+        <div class="card-value">Hibiscus & Lily of the Valley</div>
+      </div>
+      <div class="about-card glow-blue fade-in-up" style="animation-delay:0.25s">
+        <span class="card-icon">🎂</span>
+        <div class="card-label">Birthday</div>
+        <div class="card-value">June 18</div>
+      </div>
+      <div class="about-card fade-in-up" style="animation-delay:0.3s">
+        <span class="card-icon">🥲</span>
+        <div class="card-label">Allergic to</div>
+        <div class="card-value">Cabbages & Tea Leaves</div>
+      </div>
+      <div class="about-card glow-lavender fade-in-up" style="animation-delay:0.35s">
+        <span class="card-icon">👨‍👩‍👧‍👧</span>
+        <div class="card-label">Family</div>
+        <div class="card-value">4 Siblings 💕</div>
+      </div>
+      <div class="about-card wide fade-in-up" style="animation-delay:0.4s; background: linear-gradient(135deg,rgba(255,183,197,0.25),rgba(201,184,240,0.25));">
+        <span class="card-icon">💖</span>
+        <div class="card-label">Her Vibe</div>
+        <div class="card-value">Beautiful · Happy · Warm · Loving · Gorgeous Energy ✨</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery-section">
+    <h2 class="section-title fade-in-up">Memory Gallery 📸</h2>
+    <p class="section-subtitle fade-in-up">our little scrapbook</p>
+
+    <div class="gallery-upload-area fade-in-up" id="upload-area">
+      <input type="file" id="gallery-input" accept="image/*" multiple/>
+      <div class="upload-icon">🌸</div>
+      <p><strong>Tap to add memories</strong></p>
+      <p>Photos will be saved just for you 💕</p>
+    </div>
+
+    <div class="gallery-grid" id="gallery-grid">
+      <div class="gallery-empty">No memories yet… add your first photo above 🌷</div>
+    </div>
+  </section>
+
+  <!-- LETTER -->
+  <section class="letter-section">
+    <h2 class="section-title fade-in-up">A Letter for You 💌</h2>
+    <p class="section-subtitle fade-in-up">written with my whole heart</p>
+
+    <div class="letter-card fade-in-up">
+      <div class="letter-greeting">Dear Hikari,</div>
+      <div class="letter-body">
+        <p>Happy Birthday, beautiful. 🎂 <em>June 18</em> — a day the world quietly became a little more wonderful just by having you in it.</p>
+
+        <p>Three weeks. That's all it's been, and somehow you've already made me feel something I can't quite put into simple words. You have this <span class="highlight">gorgeous energy</span> that just radiates — warm, happy, and deeply loving. Talking to you never feels like a routine. It feels like sunlight through a window I didn't know I needed open.</p>
+
+        <p>I love how your favorite colors are <em>blue and grey</em> — soft, steady, and beautiful, just like you. I love that you'd happily spend a night watching horror movies 🎬 (honestly, terrifying but also kind of cool). And your flowers — <em>hibiscus and lily of the valley</em> 🌺 — delicate and vibrant all at once, which feels exactly right for someone like you.</p>
+
+        <p>I've even memorized what you can't eat — no cabbages, no tea leaves 🥲💔 — because the little details matter. You matter.</p>
+
+        <p>I think about the family you've described — your two elder brothers, your elder sister, your little sister — and I can picture the warmth of that circle. A girl surrounded by that much love could only grow into someone as full of light as you.</p>
+
+        <p>Yes, there's an ocean and many miles between us right now 🌍 — you in Kenya, me in India. But distance is just geography. What I feel when we talk has no coordinates. "All That Matters" plays in my head sometimes and it just… fits. 🎵</p>
+
+        <p>So on this birthday, I want you to feel celebrated — truly, completely, without condition. Eat the cake. Wear your blues and greys. Watch something that makes you scream 🎬. Let your siblings spoil you. Laugh too loud. You deserve every single soft and joyful thing today.</p>
+
+        <p>And when the day winds down and it's quiet — know that someone across the distance is smiling just thinking about you. 💙</p>
+      </div>
+      <div class="letter-sign">
+        — Aiden 🌸
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <section class="footer-section">
+    <div class="footer-big fade-in-up">Happy Birthday,<br/>Hikari 💖</div>
+    <p class="footer-sub fade-in-up">Wishing you the softest, most magical day 🌸</p>
+    <div class="heart-burst fade-in-up">💖 🌸 💙 🌺 ✨</div>
+  </section>
+
+</div><!-- end main-page -->
+
+<script>
+// ============ PETALS ============
+const canvas = document.getElementById('petal-canvas');
+const ctx = canvas.getContext('2d');
+let petals = [];
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+const PETAL_CHARS = ['🌸','🌸','🌸','🌸','🌷','✿'];
+function createPetal() {
+  return {
+    x: Math.random() * canvas.width,
+    y: -30,
+    size: 14 + Math.random() * 12,
+    speed: 0.6 + Math.random() * 0.8,
+    drift: (Math.random() - 0.5) * 0.6,
+    rotate: Math.random() * 360,
+    rotateSpeed: (Math.random() - 0.5) * 1.5,
+    opacity: 0.5 + Math.random() * 0.4,
+    char: PETAL_CHARS[Math.floor(Math.random() * PETAL_CHARS.length)],
+    wave: Math.random() * Math.PI * 2,
+    waveAmp: 0.5 + Math.random() * 0.8,
+  };
+}
+
+for(let i=0; i<22; i++) {
+  let p = createPetal();
+  p.y = Math.random() * canvas.height;
+  petals.push(p);
+}
+
+let lastPetalTime = 0;
+function animatePetals(ts) {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  if(ts - lastPetalTime > 400 && petals.length < 30) {
+    petals.push(createPetal());
+    lastPetalTime = ts;
+  }
+  petals.forEach((p, i) => {
+    p.y += p.speed;
+    p.wave += 0.025;
+    p.x += p.drift + Math.sin(p.wave) * p.waveAmp;
+    p.rotate += p.rotateSpeed;
+    ctx.save();
+    ctx.globalAlpha = p.opacity;
+    ctx.font = `${p.size}px serif`;
+    ctx.translate(p.x, p.y);
+    ctx.rotate(p.rotate * Math.PI / 180);
+    ctx.fillText(p.char, -p.size/2, p.size/2);
+    ctx.restore();
+    if(p.y > canvas.height + 40) petals[i] = createPetal();
+  });
+  requestAnimationFrame(animatePetals);
+}
+requestAnimationFrame(animatePetals);
+
+// ============ FLOATING HEARTS ============
+function spawnHeart() {
+  const heart = document.createElement('div');
+  heart.className = 'floating-heart';
+  heart.textContent = ['💖','💙','💕','🩷'][Math.floor(Math.random()*4)];
+  heart.style.left = (10 + Math.random() * 80) + '%';
+  heart.style.bottom = (10 + Math.random() * 30) + 'vh';
+  heart.style.animationDuration = (2 + Math.random() * 2) + 's';
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 4000);
+}
+setInterval(spawnHeart, 3500);
+
+// ============ MUSIC ============
+const music = document.getElementById('bg-music');
+const musicBtn = document.getElementById('music-btn');
+let playing = false;
+musicBtn.addEventListener('click', () => {
+  if(playing) { music.pause(); musicBtn.textContent = '🎵'; playing = false; }
+  else { music.play().catch(()=>{}); musicBtn.textContent = '⏸️'; playing = true; }
+});
+
+// ============ LOCK SCREEN ============
+const lockScreen = document.getElementById('lock-screen');
+const lockInput = document.getElementById('lock-input');
+const lockBtn = document.getElementById('lock-btn');
+const lockError = document.getElementById('lock-error');
+const mainPage = document.getElementById('main-page');
+const blossomBurst = document.getElementById('blossom-burst');
+const bdayReveal = document.getElementById('bday-reveal');
+
+function doUnlock() {
+  const val = lockInput.value.trim().toLowerCase();
+  if(val === 'aiden') {
+    // blossom burst
+    blossomBurst.style.display = 'block';
+    const cx = window.innerWidth/2, cy = window.innerHeight/2;
+    for(let i=0; i<30; i++) {
+      const p = document.createElement('div');
+      p.className = 'burst-petal';
+      const angle = (Math.random() * 360) * Math.PI / 180;
+      const dist = 80 + Math.random() * 200;
+      p.style.setProperty('--dx', Math.cos(angle)*dist + 'px');
+      p.style.setProperty('--dy', Math.sin(angle)*dist + 'px');
+      p.style.setProperty('--dr', (Math.random()*360)+'deg');
+      p.style.left = cx + 'px'; p.style.top = cy + 'px';
+      p.style.animationDelay = (Math.random()*0.3)+'s';
+      p.textContent = ['🌸','🌺','✿','💖','🌷'][Math.floor(Math.random()*5)];
+      blossomBurst.appendChild(p);
+    }
+    // show reveal text
+    setTimeout(() => { bdayReveal.classList.add('show'); }, 200);
+    // unlock
+    lockScreen.classList.add('unlock');
+    setTimeout(() => {
+      lockScreen.style.display = 'none';
+      mainPage.classList.add('show');
+      blossomBurst.style.display = 'none';
+      bdayReveal.classList.remove('show');
+      startTyping();
+      music.play().catch(()=>{});
+      musicBtn.textContent = '⏸️';
+      playing = true;
+    }, 2200);
+  } else {
+    lockInput.classList.add('shake');
+    lockError.classList.add('show');
+    setTimeout(() => lockInput.classList.remove('shake'), 400);
+  }
+}
+lockBtn.addEventListener('click', doUnlock);
+lockInput.addEventListener('keydown', e => { if(e.key === 'Enter') doUnlock(); });
+
+// ============ TYPING ANIMATION ============
+function startTyping() {
+  const text = 'Happy Birthday, Hikari ✨💖';
+  const el = document.getElementById('typing-text');
+  let i = 0;
+  function type() {
+    if(i <= text.length) {
+      el.textContent = text.slice(0, i);
+      i++;
+      setTimeout(type, 70);
+    }
+  }
+  type();
+}
+
+// ============ SCROLL PROGRESS ============
+const progressBar = document.getElementById('progress-bar');
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  progressBar.style.width = (scrollTop / docHeight * 100) + '%';
+  checkPopup(scrollTop, docHeight);
+});
+
+// ============ LOVE POPUP ============
+const lovePopup = document.getElementById('love-popup');
+let popupShown = false, popupVisible = false;
+function checkPopup(scrollTop, docHeight) {
+  const pct = scrollTop / docHeight;
+  if(pct >= 0.80 && !popupVisible) {
+    popupVisible = true;
+    lovePopup.classList.add('show');
+  } else if(pct < 0.78 && popupVisible) {
+    popupVisible = false;
+    lovePopup.classList.remove('show');
+  }
+}
+
+// ============ SCROLL ANIMATIONS ============
+const fadeEls = document.querySelectorAll('.fade-in-up');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting) { e.target.classList.add('visible'); }
+  });
+}, { threshold: 0.15 });
+fadeEls.forEach(el => observer.observe(el));
+
+// ============ GALLERY ============
+const galleryInput = document.getElementById('gallery-input');
+const galleryGrid = document.getElementById('gallery-grid');
+const uploadArea = document.getElementById('upload-area');
+const STORAGE_KEY = 'hikari_bday_gallery';
+
+// Load from localStorage
+let galleryImages = [];
+try {
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if(saved) galleryImages = JSON.parse(saved);
+} catch(e) {}
+
+function saveGallery() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(galleryImages)); } catch(e){}
+}
+
+function renderGallery() {
+  galleryGrid.innerHTML = '';
+  if(galleryImages.length === 0) {
+    galleryGrid.innerHTML = '<div class="gallery-empty">No memories yet… add your first photo above 🌷</div>';
+    return;
+  }
+  galleryImages.forEach((src, idx) => {
+    const card = document.createElement('div');
+    card.className = 'gallery-img-card fade-in-up visible';
+    card.style.animationDelay = (idx*0.08)+'s';
+    const img = document.createElement('img');
+    img.src = src; img.alt = 'Memory ' + (idx+1);
+    img.addEventListener('click', () => openLightbox(src));
+    const del = document.createElement('button');
+    del.className = 'delete-btn';
+    del.textContent = '✕';
+    del.title = 'Remove';
+    del.addEventListener('click', (e) => { e.stopPropagation(); removeImage(idx); });
+    card.appendChild(img);
+    card.appendChild(del);
+    galleryGrid.appendChild(card);
+  });
+}
+
+function removeImage(idx) {
+  galleryImages.splice(idx, 1);
+  saveGallery();
+  renderGallery();
+}
+
+uploadArea.addEventListener('click', () => galleryInput.click());
+uploadArea.addEventListener('dragover', e => { e.preventDefault(); uploadArea.style.borderColor='var(--pink-deep)'; });
+uploadArea.addEventListener('dragleave', () => uploadArea.style.borderColor='');
+uploadArea.addEventListener('drop', e => {
+  e.preventDefault(); uploadArea.style.borderColor='';
+  handleFiles(e.dataTransfer.files);
+});
+
+galleryInput.addEventListener('change', () => handleFiles(galleryInput.files));
+
+function handleFiles(files) {
+  Array.from(files).forEach(file => {
+    if(!file.type.startsWith('image/')) return;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      galleryImages.push(e.target.result);
+      saveGallery();
+      renderGallery();
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+renderGallery();
+
+// ============ LIGHTBOX ============
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const lightboxClose = document.getElementById('lightbox-close');
+
+function openLightbox(src) {
+  lightboxImg.src = src;
+  lightbox.classList.add('open');
+}
+lightboxClose.addEventListener('click', () => lightbox.classList.remove('open'));
+lightbox.addEventListener('click', (e) => { if(e.target === lightbox) lightbox.classList.remove('open'); });
+</script>
+</body>
+</html>
