@@ -1,338 +1,569 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Hikari ✿</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Hikari 🌸</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pink: #ffb7b2;
+            --blue: #c7ceea;
+            --lavender: #e2d1f9;
+            --mint: #e2f0cb;
+            --white: #ffffff;
+            --text: #5c5c8a;
+            --glow: rgba(255, 183, 178, 0.4);
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Nunito', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box;}
+        body {
+            background: linear-gradient(135deg, #fff0f5 0%, #e6e6fa 100%);
+            color: var(--text);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
 
-body{
-    font-family:'Quicksand',sans-serif;
-    background:linear-gradient(135deg,#ffe6f2,#e6f0ff,#e6fff5);
-    color:#5a4a6e;
-    overflow-x:hidden;
-}
+        /* Progress Bar */
+        #progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 5px;
+            background: linear-gradient(to right, var(--pink), var(--lavender), var(--mint));
+            width: 0%;
+            z-index: 9999;
+            transition: width 0.1s ease-out;
+        }
 
-/* 💖 LOVE BAR */
-#loveBar{
-    position:fixed;
-    top:0;
-    left:0;
-    height:4px;
-    width:0%;
-    background:linear-gradient(90deg,#ffb3d9,#b8f3d8,#c7b8ff);
-    z-index:9999;
-}
+        /* Background Music Button */
+        #music-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(5px);
+            border: 2px solid var(--pink);
+            color: var(--text);
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 4px 15px var(--glow);
+            transition: transform 0.3s ease;
+        }
+        #music-btn:active {
+            transform: scale(0.9);
+        }
 
-/* 🌸 PETALS */
-.petal{
-    position:fixed;
-    top:-10px;
-    width:10px;
-    height:10px;
-    background:radial-gradient(circle,#ffb3d9,#fff);
-    border-radius:50%;
-    opacity:.7;
-    animation:fall linear infinite;
-    z-index:1;
-}
-@keyframes fall{
-    to{transform:translateY(110vh) rotate(360deg);}
-}
+        /* Lock Screen */
+        #lock-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, var(--lavender) 0%, var(--pink) 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 5000;
+            transition: opacity 1s ease, visibility 1s ease;
+            padding: 20px;
+            text-align: center;
+        }
+        .lock-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 40px 30px;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05), 0 0 20px var(--glow);
+            max-width: 400px;
+            width: 100%;
+        }
+        #lock-screen h1 {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 22px;
+            margin-bottom: 25px;
+            color: var(--text);
+        }
+        #lock-input {
+            width: 100%;
+            padding: 15px;
+            border-radius: 20px;
+            border: 2px solid var(--lavender);
+            font-size: 18px;
+            text-align: center;
+            outline: none;
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--text);
+            transition: border 0.3s ease;
+            margin-bottom: 15px;
+        }
+        #lock-input:focus {
+            border-color: var(--pink);
+        }
+        #lock-btn {
+            width: 100%;
+            padding: 15px;
+            border-radius: 20px;
+            border: none;
+            background: var(--pink);
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 5px 15px var(--glow);
+        }
+        .error-msg {
+            color: #ff7675;
+            font-size: 14px;
+            margin-top: 10px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .shake {
+            animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
+        }
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-2px, 0, 0); }
+            20%, 80% { transform: translate3d(3px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-5px, 0, 0); }
+            40%, 60% { transform: translate3d(5px, 0, 0); }
+        }
 
-/* HEADER */
-header{
-    text-align:center;
-    padding:80px 20px 20px;
-}
+        /* Main Content */
+        #main-content {
+            display: none;
+            padding: 40px 20px 100px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+        }
 
-h1{
-    font-family:'Fredoka';
-    font-size:2rem;
-    background:linear-gradient(90deg,#ffb3d9,#b8f3d8,#c7b8ff);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-}
+        /* Typing Intro */
+        .intro-section {
+            text-align: center;
+            margin-bottom: 50px;
+            min-height: 120px;
+        }
+        .typing-text {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+        .typing-subtext {
+            font-size: 18px;
+            color: #7b7bb0;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
 
-#typing{
-    margin-top:10px;
-    min-height:20px;
-    text-shadow:0 0 10px rgba(255,179,217,0.4);
-}
+        /* About Cards */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+            margin-bottom: 50px;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(8px);
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border: 1px solid rgba(255,255,255,0.8);
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px var(--glow);
+        }
+        .card-icon {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+        .card-title {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #a29bfe;
+            margin-bottom: 5px;
+        }
+        .card-desc {
+            font-size: 15px;
+            font-weight: 600;
+        }
 
-/* SECTION */
-section{
-    max-width:900px;
-    margin:20px auto;
-    background:white;
-    padding:18px;
-    border-radius:18px;
-    border:2px solid #ffd9e8;
-    box-shadow:0 10px 20px rgba(0,0,0,0.05);
-}
+        /* Letter Section */
+        .letter-section {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            line-height: 1.8;
+            margin-bottom: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+        .letter-section::before {
+            content: '';
+            position: absolute;
+            top: -50px; right: -50px;
+            width: 150px; height: 150px;
+            background: radial-gradient(circle, var(--pink) 0%, transparent 70%);
+            opacity: 0.3;
+            border-radius: 50%;
+        }
+        .letter-title {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #ff9a9e;
+        }
+        .letter-text {
+            font-size: 16px;
+            text-align: justify;
+        }
+        .letter-signature {
+            margin-top: 20px;
+            text-align: right;
+            font-weight: bold;
+            font-size: 18px;
+            color: var(--pink);
+        }
 
-/* LOCK SCREEN */
-#lock{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,0.92);
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    color:white;
-    z-index:99999;
-    text-align:center;
-}
+        /* Memory Gallery */
+        .gallery-section {
+            margin-bottom: 50px;
+        }
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .upload-btn {
+            background: var(--blue);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 20px;
+            display: inline-block;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(199, 206, 234, 0.6);
+            transition: transform 0.2s;
+        }
+        .upload-btn:active {
+            transform: scale(0.95);
+        }
+        input[type="file"] {
+            display: none;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        .gallery-item {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 3px solid white;
+            animation: fadeIn 0.5s ease;
+        }
 
-#lock input{
-    padding:10px;
-    border-radius:10px;
-    border:none;
-    margin-top:10px;
-}
+        /* Scroll Popup */
+        #scroll-popup {
+            position: fixed;
+            bottom: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 15px 25px;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px var(--glow);
+            font-family: 'Quicksand', sans-serif;
+            font-weight: bold;
+            color: var(--pink);
+            white-space: nowrap;
+            z-index: 2000;
+            transition: bottom 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        #scroll-popup.show {
+            bottom: 30px;
+            animation: pulseGlow 2s infinite;
+        }
 
-#lock button{
-    margin-top:10px;
-    padding:10px 15px;
-    border:none;
-    border-radius:10px;
-    background:#ffb3d9;
-}
+        /* Cherry Blossoms */
+        .petal {
+            position: fixed;
+            background: #ffb7b2;
+            border-radius: 150% 0 150% 0;
+            opacity: 0.6;
+            pointer-events: none;
+            z-index: 100;
+            animation: fall linear infinite;
+        }
 
-.shake{animation:shake .3s;}
-@keyframes shake{
-    0%,100%{transform:translateX(0);}
-    25%{transform:translateX(-5px);}
-    50%{transform:translateX(5px);}
-}
-
-/* GALLERY */
-.gallery{
-    display:flex;
-    gap:10px;
-    overflow-x:auto;
-    scroll-snap-type:x mandatory;
-}
-
-.gallery img{
-    width:160px;
-    height:160px;
-    object-fit:cover;
-    border-radius:15px;
-    scroll-snap-align:center;
-}
-
-/* UPLOAD */
-.upload{
-    margin-bottom:10px;
-    text-align:center;
-}
-
-/* 💌 LETTER */
-.letter{
-    line-height:1.8;
-    font-size:15px;
-}
-
-/* 💌 CONFESSION */
-#confession{
-    position:fixed;
-    bottom:-200px;
-    left:50%;
-    transform:translateX(-50%);
-    background:#ff6fae;
-    color:white;
-    padding:18px;
-    border-radius:15px;
-    width:80%;
-    max-width:320px;
-    text-align:center;
-    transition:.6s;
-    z-index:9999;
-}
-#confession.show{
-    bottom:40px;
-}
-
-/* MUSIC */
-.music{
-    position:fixed;
-    bottom:20px;
-    right:20px;
-    width:55px;
-    height:55px;
-    background:#ffb3d9;
-    border-radius:50%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:22px;
-    z-index:100;
-}
-</style>
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 10px 30px var(--glow); }
+            50% { box-shadow: 0 10px 40px rgba(255, 183, 178, 0.8); }
+        }
+    </style>
 </head>
-
 <body>
 
-<div id="loveBar"></div>
+    <!-- Scroll Progress -->
+    <div id="progress-bar"></div>
 
-<!-- 🔒 LOCK -->
-<div id="lock">
-<h2>Who is your favorite person?</h2>
-<input id="nameInput" placeholder="Type name...">
-<button onclick="unlock()">Unlock</button>
-<p id="error"></p>
-</div>
+    <!-- Music Player -->
+    <audio id="bg-music" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+    <div id="music-btn">🎵</div>
 
-<!-- 🎵 MUSIC -->
-<audio id="music" loop>
-<source src="./song.mp3">
-</audio>
+    <!-- Scroll Popup -->
+    <div id="scroll-popup">💌 I’m really happy you’re my girlfriend 💙</div>
 
-<div class="music" onclick="document.getElementById('music').play()">🎵</div>
+    <!-- Petals Container -->
+    <div id="petals"></div>
 
-<header>
-<h1>✿ For Hikari ✿</h1>
-<div id="typing"></div>
-</header>
+    <!-- Lock Screen -->
+    <div id="lock-screen">
+        <div class="lock-card">
+            <h1>Who is the birthday girl’s favorite person? 🌸</h1>
+            <input type="text" id="lock-input" placeholder="Enter name..." autocomplete="off">
+            <button id="lock-btn">Unlock Gift</button>
+            <div class="error-msg" id="error-msg">Try again 💔</div>
+        </div>
+    </div>
 
-<section>
-<h2>Memories 💖</h2>
-<div class="upload">
-<input type="file" id="fileInput" multiple accept="image/*">
-</div>
-<div class="gallery" id="gallery"></div>
-</section>
+    <!-- Main Content -->
+    <div id="main-content">
+        <!-- Intro -->
+        <header class="intro-section">
+            <div class="typing-text" id="typing-text"></div><br>
+            <div class="typing-subtext" id="typing-subtext">You make everything feel softer… 🌸</div>
+        </header>
 
-<section>
-<h2>About Her 🌸</h2>
-<p>
-💙 Blue & Grey<br>
-🎬 Horror movies<br>
-🌺 Hibiscus & Lily of the Valley<br>
-🎂 June 18<br>
-🥲 Allergic to cabbage & tea leaves<br>
-👨‍👩‍👧‍👧 4 siblings<br>
-💖 Beautiful, warm, happy personality
-</p>
-</section>
+        <!-- About Her Cards -->
+        <section class="about-grid">
+            <div class="card">
+                <div class="card-icon">🎂</div>
+                <div class="card-title">Birthday</div>
+                <div class="card-desc">June 18th</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">💙</div>
+                <div class="card-title">Colors</div>
+                <div class="card-desc">Blue & Grey</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">🎬</div>
+                <div class="card-title">Movies</div>
+                <div class="card-desc">Horror Vibes</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">🌺</div>
+                <div class="card-title">Flowers</div>
+                <div class="card-desc">Hibiscus & Lily of the Valley</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">🥲💔</div>
+                <div class="card-title">Allergies</div>
+                <div class="card-desc">Cabbages & Tea leaves</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">✨</div>
+                <div class="card-title">Energy</div>
+                <div class="card-desc">Beautiful, Warm & Loving</div>
+            </div>
+        </section>
 
-<section>
-<h2>Letter 💌</h2>
-<div class="letter">
-Hey Hikari,<br><br>
+        <!-- Birthday Letter -->
+        <section class="letter-section">
+            <div class="letter-title">To my beautiful Hikari ✨</div>
+            <div class="letter-text">
+                Happy Birthday, my gorgeous girl! 🎂 Even though we are long-distance right now, I wanted to make a little space just for you today, so you can feel exactly how special you are to me.<br><br>
+                You have this incredibly warm, loving, and beautiful energy that just makes everything in my life feel brighter and softer. It always makes me smile how much you love spooky horror movies, yet you are the kindest, softest person I know. Every time I see the colors blue and grey, or catch a glimpse of hibiscus and lily of the valley, my mind goes straight to you. 🌺💙<br><br>
+                I even love your quirky little allergies to cabbages and tea leaves—it’s all part of the Hikari I completely adore. I hope you get to celebrate big today with your two brothers and two sisters, and that you eat all the cake (strictly tea-leaf-free, of course!). <br><br>
+                Whenever I listen to <i>'All That Matters'</i>, it reminds me of us. I hope your June 18th is as gorgeous and magical as you are. I can't wait until I can celebrate with you in person.<br><br>
+                I’m really happy you’re my girlfriend. 💙
+            </div>
+            <div class="letter-signature">- Aiden 💖</div>
+        </section>
 
-It’s crazy how someone I met not long ago already feels this important to me.<br><br>
+        <!-- Memory Scrapbook -->
+        <section class="gallery-section">
+            <div class="gallery-header">
+                <h2 style="font-family: 'Quicksand'; color: var(--text); margin-bottom: 10px;">Our Memory Scrapbook 📖</h2>
+                <label class="upload-btn">
+                    + Add Memory
+                    <input type="file" id="image-upload" accept="image/*">
+                </label>
+            </div>
+            <div class="gallery-grid" id="gallery-grid">
+                <!-- Images will appear here -->
+            </div>
+        </section>
+    </div>
 
-I love how your favorite color is blue and grey — it fits your calm and soft vibe so perfectly. I love that you enjoy horror movies even though they’re scary… it makes you even cooler.<br><br>
+    <script>
+        // Elements
+        const lockScreen = document.getElementById('lock-screen');
+        const lockBtn = document.getElementById('lock-btn');
+        const lockInput = document.getElementById('lock-input');
+        const errorMsg = document.getElementById('error-msg');
+        const mainContent = document.getElementById('main-content');
+        const bgMusic = document.getElementById('bg-music');
+        const musicBtn = document.getElementById('music-btn');
+        
+        let isMusicPlaying = false;
 
-Whenever I hear “All That Matters,” I think of you now. It somehow feels like your song.<br><br>
+        // Music Toggle
+        musicBtn.addEventListener('click', () => {
+            if (isMusicPlaying) {
+                bgMusic.pause();
+                musicBtn.innerHTML = '🔇';
+            } else {
+                bgMusic.play().catch(e => console.log("Music play failed:", e));
+                musicBtn.innerHTML = '🎵';
+            }
+            isMusicPlaying = !isMusicPlaying;
+        });
 
-You like hibiscus and lily of the valley — soft and beautiful flowers, just like you.<br><br>
+        // Lock Screen Logic
+        lockBtn.addEventListener('click', checkPassword);
+        lockInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') checkPassword();
+        });
 
-And I still remember the small things… like you being allergic to cabbage and tea leaves 🥲💔 I won’t forget that.<br><br>
+        function checkPassword() {
+            const val = lockInput.value.trim().toLowerCase();
+            if (val === 'aiden') {
+                // Success
+                lockScreen.style.opacity = '0';
+                setTimeout(() => {
+                    lockScreen.style.visibility = 'hidden';
+                    mainContent.style.display = 'block';
+                    setTimeout(() => {
+                        mainContent.style.opacity = '1';
+                        startTypingEffect();
+                        createPetals();
+                        // Try autoplaying music on mobile after interaction
+                        bgMusic.play().then(() => {
+                            isMusicPlaying = true;
+                            musicBtn.innerHTML = '🎵';
+                        }).catch(() => { console.log("Autoplay blocked by browser"); });
+                    }, 100);
+                }, 1000);
+            } else {
+                // Fail
+                lockScreen.classList.remove('shake');
+                void lockScreen.offsetWidth; // trigger reflow
+                lockScreen.classList.add('shake');
+                errorMsg.style.opacity = '1';
+                setTimeout(() => { errorMsg.style.opacity = '0'; }, 2000);
+            }
+        }
 
-Your birthday on June 18 feels special to me now too.<br><br>
+        // Typing Effect
+        function startTypingEffect() {
+            const text = "Happy Birthday, Hikari ✨💖";
+            const el = document.getElementById('typing-text');
+            const sub = document.getElementById('typing-subtext');
+            let i = 0;
+            
+            function type() {
+                if (i < text.length) {
+                    el.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, 100);
+                } else {
+                    sub.style.opacity = '1';
+                    sub.style.transform = 'translateY(0)';
+                }
+            }
+            setTimeout(type, 500);
+        }
 
-You have such a beautiful family — 2 elder brothers, 1 elder sister, and 1 younger sister. It sounds full of life, just like you.<br><br>
+        // Falling Cherry Blossoms
+        function createPetals() {
+            const container = document.getElementById('petals');
+            const petalCount = 20; // Keep it light for mobile
 
-Even though this is long distance and only about a month, talking to you already means a lot to me.<br><br>
+            for (let i = 0; i < petalCount; i++) {
+                let petal = document.createElement('div');
+                petal.classList.add('petal');
+                
+                // Random properties
+                let left = Math.random() * 100 + 'vw';
+                let animationDuration = Math.random() * 5 + 5 + 's';
+                let animationDelay = Math.random() * 10 + 's';
+                let size = Math.random() * 10 + 5 + 'px';
+                
+                petal.style.left = left;
+                petal.style.width = size;
+                petal.style.height = size;
+                petal.style.animationDuration = animationDuration;
+                petal.style.animationDelay = animationDelay;
+                
+                container.appendChild(petal);
+            }
+        }
 
-And maybe… just maybe… I like you more than I planned to.<br><br>
+        // Scroll Logic (Progress Bar & Popup)
+        const progressBar = document.getElementById('progress-bar');
+        const scrollPopup = document.getElementById('scroll-popup');
+        let lastScrollY = window.scrollY;
 
-</div>
-</section>
+        window.addEventListener('scroll', () => {
+            let scrollTop = window.scrollY;
+            let docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            let scrollPercent = (scrollTop / docHeight) * 100;
+            
+            progressBar.style.width = scrollPercent + '%';
 
-<!-- 💌 CONFESSION -->
-<div id="confession">
-💌 I think I like you more than I planned to…
-</div>
+            // Show popup at 80% scroll DOWN, hide on scroll UP
+            if (scrollPercent > 80 && scrollTop > lastScrollY) {
+                scrollPopup.classList.add('show');
+            } else {
+                scrollPopup.classList.remove('show');
+            }
+            lastScrollY = scrollTop;
+        });
 
-<!-- SCRIPTS -->
-<script>
-
-/* 🌸 PETALS */
-function petal(){
-    const p=document.createElement("div");
-    p.className="petal";
-    p.style.left=Math.random()*100+"vw";
-    p.style.animationDuration=(3+Math.random()*5)+"s";
-    document.body.appendChild(p);
-    setTimeout(()=>p.remove(),8000);
-}
-setInterval(petal,200);
-
-/* 🔒 LOCK */
-function unlock(){
-    const val=document.getElementById("nameInput").value.toLowerCase().trim();
-    if(val==="aiden"){
-        document.getElementById("lock").style.display="none";
-        document.getElementById("music").play();
-        document.body.style.overflow="auto";
-    }else{
-        document.getElementById("error").innerText="Try again 💔";
-        document.getElementById("lock").classList.add("shake");
-        setTimeout(()=>document.getElementById("lock").classList.remove("shake"),300);
-    }
-}
-
-/* ✍️ TYPING */
-const text="You make everything feel softer… ✨";
-let i=0;
-function type(){
-    if(i<text.length){
-        document.getElementById("typing").innerHTML+=text[i++];
-        setTimeout(type,60);
-    }
-}
-type();
-
-/* 📸 UPLOAD + SAVE */
-const input=document.getElementById("fileInput");
-const gallery=document.getElementById("gallery");
-
-let saved=JSON.parse(localStorage.getItem("imgs")||"[]");
-
-function render(){
-    gallery.innerHTML="";
-    saved.forEach(src=>{
-        const img=document.createElement("img");
-        img.src=src;
-        gallery.appendChild(img);
-    });
-}
-render();
-
-input.addEventListener("change",e=>{
-    [...e.target.files].forEach(file=>{
-        const reader=new FileReader();
-        reader.onload=ev=>{
-            saved.push(ev.target.result);
-            localStorage.setItem("imgs",JSON.stringify(saved));
-            render();
-        };
-        reader.readAsDataURL(file);
-    });
-});
-
-/* 💖 LOVE BAR + CONFESSION */
-window.addEventListener("scroll",()=>{
-    const h=document.documentElement.scrollHeight-window.innerHeight;
-    const s=(window.scrollY/h)*100;
-
-    document.getElementById("loveBar").style.width=s+"%";
-
-    const pop=document.getElementById("confession");
-    if(s>80) pop.classList.add("show");
-    else pop.classList.remove("show");
-});
-
-</script>
-
-</body>
-</html>
+        // Memory Gallery (LocalStorage + Image Resize to prevent crashing)
+        const imageUpload = document.getElementById('image-upload'
