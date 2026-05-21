@@ -1,574 +1,763 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Hikari 🌸</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --pink: #ffb7b2;
-            --blue: #c7ceea;
-            --lavender: #e2d1f9;
-            --mint: #e2f0cb;
-            --white: #ffffff;
-            --text: #5c5c8a;
-            --glow: rgba(255, 183, 178, 0.4);
-        }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Happy Birthday, Hikari 💖</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Nunito:wght@300;400;600;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --pink: #FFB7C5;
+    --pink-deep: #FF85A1;
+    --lavender: #C9B8F0;
+    --baby-blue: #B8D8F0;
+    --mint: #B8F0D8;
+    --warm-white: #FFF8F9;
+    --peach: #FFD9C0;
+    --gold: #FFD97D;
+    --text-dark: #4A3050;
+    --text-mid: #7A5080;
+    --text-soft: #B08AB8;
+    --card-bg: rgba(255,255,255,0.72);
+    --glow-pink: rgba(255,183,197,0.55);
+    --glow-lavender: rgba(201,184,240,0.45);
+  }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Nunito', sans-serif;
-            -webkit-tap-highlight-color: transparent;
-        }
+  * { margin:0; padding:0; box-sizing:border-box; }
 
-        body {
-            background: linear-gradient(135deg, #fff0f5 0%, #e6e6fa 100%);
-            color: var(--text);
-            overflow-x: hidden;
-            min-height: 100vh;
-        }
+  html { scroll-behavior: smooth; }
 
-        /* Progress Bar */
-        #progress-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 5px;
-            background: linear-gradient(to right, var(--pink), var(--lavender), var(--mint));
-            width: 0%;
-            z-index: 9999;
-            transition: width 0.1s ease-out;
-        }
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--warm-white);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
 
-        /* Background Music Button */
-        #music-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(5px);
-            border: 2px solid var(--pink);
-            color: var(--text);
-            font-size: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 1000;
-            box-shadow: 0 4px 15px var(--glow);
-            transition: transform 0.3s ease;
-        }
-        #music-btn:active {
-            transform: scale(0.9);
-        }
+  /* SCROLL PROGRESS BAR */
+  #progress-bar {
+    position: fixed;
+    top: 0; left: 0;
+    height: 4px;
+    width: 0%;
+    background: linear-gradient(90deg, var(--pink-deep), var(--lavender), var(--mint));
+    z-index: 9999;
+    transition: width 0.1s linear;
+    border-radius: 0 4px 4px 0;
+    box-shadow: 0 0 10px var(--glow-pink);
+  }
 
-        /* Lock Screen */
-        #lock-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: linear-gradient(135deg, var(--lavender) 0%, var(--pink) 100%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 5000;
-            transition: opacity 1s ease, visibility 1s ease;
-            padding: 20px;
-            text-align: center;
-        }
-        .lock-card {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(10px);
-            padding: 40px 30px;
-            border-radius: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05), 0 0 20px var(--glow);
-            max-width: 400px;
-            width: 100%;
-        }
-        #lock-screen h1 {
-            font-family: 'Quicksand', sans-serif;
-            font-size: 22px;
-            margin-bottom: 25px;
-            color: var(--text);
-        }
-        #lock-input {
-            width: 100%;
-            padding: 15px;
-            border-radius: 20px;
-            border: 2px solid var(--lavender);
-            font-size: 18px;
-            text-align: center;
-            outline: none;
-            background: rgba(255, 255, 255, 0.9);
-            color: var(--text);
-            transition: border 0.3s ease;
-            margin-bottom: 15px;
-        }
-        #lock-input:focus {
-            border-color: var(--pink);
-        }
-        #lock-btn {
-            width: 100%;
-            padding: 15px;
-            border-radius: 20px;
-            border: none;
-            background: var(--pink);
-            color: white;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 5px 15px var(--glow);
-        }
-        .error-msg {
-            color: #ff7675;
-            font-size: 14px;
-            margin-top: 10px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        .shake {
-            animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
-        }
-        @keyframes shake {
-            10%, 90% { transform: translate3d(-2px, 0, 0); }
-            20%, 80% { transform: translate3d(3px, 0, 0); }
-            30%, 50%, 70% { transform: translate3d(-5px, 0, 0); }
-            40%, 60% { transform: translate3d(5px, 0, 0); }
-        }
+  /* CHERRY BLOSSOM CANVAS */
+  #petal-canvas {
+    position: fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    pointer-events: none;
+    z-index: 5;
+  }
 
-        /* Main Content */
-        #main-content {
-            display: none;
-            padding: 40px 20px 100px 20px;
-            max-width: 800px;
-            margin: 0 auto;
-            opacity: 0;
-            transition: opacity 1.5s ease;
-        }
+  /* MUSIC BUTTON */
+  #music-btn {
+    position: fixed;
+    bottom: 24px; right: 20px;
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--pink-deep), var(--lavender));
+    border: none;
+    cursor: pointer;
+    z-index: 9998;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    box-shadow: 0 4px 20px var(--glow-pink);
+    transition: transform 0.2s, box-shadow 0.2s;
+    animation: pulse-btn 2.5s ease-in-out infinite;
+  }
+  #music-btn:hover { transform: scale(1.1); box-shadow: 0 6px 28px var(--glow-pink); }
+  @keyframes pulse-btn {
+    0%,100% { box-shadow: 0 4px 20px var(--glow-pink); }
+    50% { box-shadow: 0 4px 32px rgba(255,133,161,0.7); }
+  }
 
-        /* Typing Intro */
-        .intro-section {
-            text-align: center;
-            margin-bottom: 50px;
-            min-height: 120px;
-        }
-        .typing-text {
-            font-family: 'Quicksand', sans-serif;
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--text);
-            margin-bottom: 10px;
-            display: inline-block;
-        }
-        .typing-subtext {
-            font-size: 18px;
-            color: #7b7bb0;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 1s ease, transform 1s ease;
-        }
+  /* ====== LOCK SCREEN ====== */
+  #lock-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    background: linear-gradient(160deg, #FFE8F0 0%, #EDE0FF 40%, #D8EEFF 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 24px;
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  #lock-screen.unlock {
+    opacity: 0;
+    transform: scale(1.05);
+    pointer-events: none;
+  }
 
-        /* About Cards */
-        .about-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 15px;
-            margin-bottom: 50px;
-        }
-        .card {
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(8px);
-            border-radius: 20px;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            border: 1px solid rgba(255,255,255,0.8);
-            transition: transform 0.3s ease;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px var(--glow);
-        }
-        .card-icon {
-            font-size: 30px;
-            margin-bottom: 10px;
-        }
-        .card-title {
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #a29bfe;
-            margin-bottom: 5px;
-        }
-        .card-desc {
-            font-size: 15px;
-            font-weight: 600;
-        }
+  .lock-gift-icon {
+    font-size: 72px;
+    margin-bottom: 16px;
+    animation: float-gift 3s ease-in-out infinite;
+    filter: drop-shadow(0 6px 16px rgba(255,133,161,0.4));
+  }
+  @keyframes float-gift {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
 
-        /* Letter Section */
-        .letter-section {
-            background: rgba(255, 255, 255, 0.75);
-            backdrop-filter: blur(10px);
-            border-radius: 30px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            line-height: 1.8;
-            margin-bottom: 50px;
-            position: relative;
-            overflow: hidden;
-        }
-        .letter-section::before {
-            content: '';
-            position: absolute;
-            top: -50px; right: -50px;
-            width: 150px; height: 150px;
-            background: radial-gradient(circle, var(--pink) 0%, transparent 70%);
-            opacity: 0.3;
-            border-radius: 50%;
-        }
-        .letter-title {
-            font-family: 'Quicksand', sans-serif;
-            font-size: 24px;
-            text-align: center;
-            margin-bottom: 20px;
-            color: #ff9a9e;
-        }
-        .letter-text {
-            font-size: 16px;
-            text-align: justify;
-        }
-        .letter-signature {
-            margin-top: 20px;
-            text-align: right;
-            font-weight: bold;
-            font-size: 18px;
-            color: var(--pink);
-        }
+  .lock-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.2rem;
+    color: var(--pink-deep);
+    text-align: center;
+    margin-bottom: 8px;
+    text-shadow: 0 2px 12px var(--glow-pink);
+  }
 
-        /* Memory Gallery */
-        .gallery-section {
-            margin-bottom: 50px;
-        }
-        .gallery-header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .upload-btn {
-            background: var(--blue);
-            color: white;
-            padding: 12px 25px;
-            border-radius: 20px;
-            display: inline-block;
-            cursor: pointer;
-            font-weight: bold;
-            box-shadow: 0 4px 15px rgba(199, 206, 234, 0.6);
-            transition: transform 0.2s;
-        }
-        .upload-btn:active {
-            transform: scale(0.95);
-        }
-        input[type="file"] {
-            display: none;
-        }
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-        }
-        .gallery-item {
-            width: 100%;
-            aspect-ratio: 1/1;
-            object-fit: cover;
-            border-radius: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border: 3px solid white;
-            animation: fadeIn 0.5s ease;
-        }
+  .lock-subtitle {
+    font-size: 0.95rem;
+    color: var(--text-mid);
+    text-align: center;
+    margin-bottom: 36px;
+  }
 
-        /* Scroll Popup */
-        #scroll-popup {
-            position: fixed;
-            bottom: -100px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: white;
-            padding: 15px 25px;
-            border-radius: 30px;
-            box-shadow: 0 10px 30px var(--glow);
-            font-family: 'Quicksand', sans-serif;
-            font-weight: bold;
-            color: var(--pink);
-            white-space: nowrap;
-            z-index: 2000;
-            transition: bottom 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-        #scroll-popup.show {
-            bottom: 30px;
-            animation: pulseGlow 2s infinite;
-        }
+  .lock-question {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    text-align: center;
+    margin-bottom: 20px;
+    font-style: italic;
+  }
 
-        /* Cherry Blossoms */
-        .petal {
-            position: fixed;
-            background: #ffb7b2;
-            border-radius: 150% 0 150% 0;
-            opacity: 0.6;
-            pointer-events: none;
-            z-index: 100;
-            animation: fall linear infinite;
-        }
+  .lock-input-wrap {
+    width: 100%;
+    max-width: 300px;
+    position: relative;
+    margin-bottom: 16px;
+  }
+  .lock-input {
+    width: 100%;
+    padding: 16px 20px;
+    border-radius: 50px;
+    border: 2px solid rgba(255,183,197,0.5);
+    background: rgba(255,255,255,0.85);
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    color: var(--text-dark);
+    text-align: center;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 16px rgba(255,183,197,0.2);
+  }
+  .lock-input:focus {
+    border-color: var(--pink-deep);
+    box-shadow: 0 4px 24px var(--glow-pink);
+  }
+  .lock-input.shake {
+    animation: shake 0.4s ease;
+    border-color: #FF6B8A;
+  }
+  @keyframes shake {
+    0%,100% { transform: translateX(0); }
+    20% { transform: translateX(-8px); }
+    40% { transform: translateX(8px); }
+    60% { transform: translateX(-6px); }
+    80% { transform: translateX(6px); }
+  }
 
-        @keyframes fall {
-            0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.8; }
-            90% { opacity: 0.8; }
-            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
-        @keyframes pulseGlow {
-            0%, 100% { box-shadow: 0 10px 30px var(--glow); }
-            50% { box-shadow: 0 10px 40px rgba(255, 183, 178, 0.8); }
-        }
-    </style>
+  .lock-btn {
+    width: 100%;
+    max-width: 300px;
+    padding: 16px;
+    border-radius: 50px;
+    border: none;
+    background: linear-gradient(135deg, var(--pink-deep), var(--lavender));
+    color: white;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 6px 24px var(--glow-pink);
+    letter-spacing: 0.5px;
+  }
+  .lock-btn:active { transform: scale(0.97); }
+
+  .lock-error {
+    margin-top: 12px;
+    font-size: 0.9rem;
+    color: #FF6B8A;
+    opacity: 0;
+    transition: opacity 0.3s;
+    text-align: center;
+  }
+  .lock-error.show { opacity: 1; }
+
+  .lock-petals-hint {
+    margin-top: 32px;
+    font-size: 1.4rem;
+    letter-spacing: 8px;
+    opacity: 0.5;
+    animation: sway 3s ease-in-out infinite;
+  }
+  @keyframes sway {
+    0%,100% { letter-spacing: 8px; }
+    50% { letter-spacing: 12px; }
+  }
+
+  /* ====== MAIN PAGE ====== */
+  #main-page { display: none; }
+  #main-page.show { display: block; }
+
+  /* HERO SECTION */
+  .hero {
+    min-height: 100svh;
+    background: linear-gradient(160deg, #FFE8F0 0%, #EDE0FF 50%, #D8F0FF 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 24px 40px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .hero-decoration {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.25;
+    pointer-events: none;
+  }
+  .hero-decoration.d1 {
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, var(--pink), transparent);
+    top: -80px; left: -80px;
+  }
+  .hero-decoration.d2 {
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, var(--lavender), transparent);
+    bottom: 40px; right: -40px;
+  }
+
+  .hero-emoji {
+    font-size: 3.5rem;
+    margin-bottom: 16px;
+    animation: float-gift 3s ease-in-out infinite;
+    display: block;
+    filter: drop-shadow(0 4px 12px rgba(255,133,161,0.3));
+  }
+
+  .typing-container {
+    min-height: 60px;
+    margin-bottom: 8px;
+  }
+
+  #typing-text {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.6rem;
+    color: var(--pink-deep);
+    text-shadow: 0 2px 16px var(--glow-pink);
+    display: inline;
+  }
+  .cursor {
+    display: inline-block;
+    width: 3px;
+    height: 2.2rem;
+    background: var(--lavender);
+    margin-left: 2px;
+    vertical-align: middle;
+    animation: blink 0.8s step-end infinite;
+    border-radius: 2px;
+  }
+  @keyframes blink { 0%,100%{opacity:1}50%{opacity:0} }
+
+  .hero-sub {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: var(--text-mid);
+    font-style: italic;
+    margin-top: 12px;
+    opacity: 0;
+    animation: fadeUp 1s ease 3.8s forwards;
+  }
+
+  .hero-date-badge {
+    margin-top: 28px;
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(10px);
+    border-radius: 50px;
+    padding: 10px 24px;
+    font-size: 0.9rem;
+    color: var(--text-mid);
+    font-weight: 600;
+    box-shadow: 0 4px 20px var(--glow-lavender);
+    border: 1.5px solid rgba(255,183,197,0.3);
+    opacity: 0;
+    animation: fadeUp 1s ease 4.2s forwards;
+  }
+
+  @keyframes fadeUp {
+    from { opacity:0; transform: translateY(16px); }
+    to { opacity:1; transform: translateY(0); }
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.8rem;
+    color: var(--text-soft);
+    letter-spacing: 1px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    animation: fadeUp 1s ease 5s forwards;
+    opacity: 0;
+  }
+  .scroll-hint span { font-size: 1.2rem; animation: bounce-down 1.5s ease-in-out infinite; }
+  @keyframes bounce-down {
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(5px)}
+  }
+
+  /* ====== SECTIONS ====== */
+  section {
+    padding: 60px 20px;
+    position: relative;
+  }
+
+  .section-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    color: var(--pink-deep);
+    text-align: center;
+    margin-bottom: 8px;
+    text-shadow: 0 2px 12px var(--glow-pink);
+  }
+  .section-subtitle {
+    font-size: 0.88rem;
+    color: var(--text-soft);
+    text-align: center;
+    margin-bottom: 32px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* ====== ABOUT CARDS ====== */
+  .about-section {
+    background: linear-gradient(180deg, #FFF0F5 0%, #F5F0FF 100%);
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .about-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+    padding: 18px 14px;
+    text-align: center;
+    border: 1.5px solid rgba(255,183,197,0.25);
+    box-shadow: 0 4px 20px rgba(255,183,197,0.15);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: default;
+    animation: fadeUp 0.6s ease backwards;
+  }
+  .about-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 32px var(--glow-pink);
+  }
+  .about-card .card-icon { font-size: 1.8rem; margin-bottom: 8px; display: block; }
+  .about-card .card-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-soft);
+    margin-bottom: 4px;
+    font-weight: 600;
+  }
+  .about-card .card-value {
+    font-size: 0.88rem;
+    color: var(--text-dark);
+    font-weight: 600;
+    line-height: 1.4;
+  }
+  .about-card.wide { grid-column: 1 / -1; }
+  .about-card.glow-lavender { box-shadow: 0 4px 20px var(--glow-lavender); border-color: rgba(201,184,240,0.3); }
+  .about-card.glow-blue { box-shadow: 0 4px 20px rgba(184,216,240,0.3); border-color: rgba(184,216,240,0.35); }
+
+  /* ====== GALLERY ====== */
+  .gallery-section {
+    background: linear-gradient(180deg, #F5F0FF 0%, #F0F8FF 100%);
+  }
+
+  .gallery-upload-area {
+    max-width: 480px;
+    margin: 0 auto 24px;
+    border: 2px dashed rgba(255,133,161,0.4);
+    border-radius: 20px;
+    padding: 24px 20px;
+    text-align: center;
+    background: rgba(255,255,255,0.6);
+    cursor: pointer;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .gallery-upload-area:hover { border-color: var(--pink-deep); background: rgba(255,255,255,0.85); }
+  .gallery-upload-area input { display: none; }
+  .gallery-upload-area .upload-icon { font-size: 2rem; margin-bottom: 8px; }
+  .gallery-upload-area p { font-size: 0.88rem; color: var(--text-soft); }
+  .gallery-upload-area strong { color: var(--pink-deep); }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .gallery-img-card {
+    border-radius: 16px;
+    overflow: hidden;
+    aspect-ratio: 1;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(255,183,197,0.25);
+    border: 2px solid rgba(255,255,255,0.8);
+    cursor: pointer;
+    animation: fadeUp 0.5s ease backwards;
+  }
+  .gallery-img-card img {
+    width:100%; height:100%;
+    object-fit: cover;
+    transition: transform 0.4s;
+  }
+  .gallery-img-card:hover img { transform: scale(1.05); }
+  .gallery-img-card .delete-btn {
+    position: absolute;
+    top: 6px; right: 6px;
+    background: rgba(255,255,255,0.85);
+    border: none;
+    border-radius: 50%;
+    width: 28px; height: 28px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    display: flex; align-items:center;justify-content:center;
+    color: #FF6B8A;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .gallery-img-card:hover .delete-btn { opacity: 1; }
+
+  .gallery-empty {
+    grid-column: 1/-1;
+    text-align: center;
+    padding: 32px;
+    color: var(--text-soft);
+    font-style: italic;
+    font-size: 0.9rem;
+  }
+
+  /* Lightbox */
+  #lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(20,10,30,0.88);
+    z-index: 8000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  #lightbox.open { display: flex; }
+  #lightbox img {
+    max-width: 100%;
+    max-height: 85vh;
+    border-radius: 16px;
+    box-shadow: 0 8px 40px rgba(255,183,197,0.3);
+  }
+  #lightbox-close {
+    position: absolute;
+    top: 16px; right: 20px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+
+  /* ====== LETTER SECTION ====== */
+  .letter-section {
+    background: linear-gradient(180deg, #F0F8FF 0%, #FFF0F8 100%);
+  }
+
+  .letter-card {
+    max-width: 480px;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.82);
+    backdrop-filter: blur(16px);
+    border-radius: 28px;
+    padding: 36px 28px;
+    border: 1.5px solid rgba(255,183,197,0.25);
+    box-shadow: 0 8px 40px rgba(255,183,197,0.2), 0 2px 8px rgba(201,184,240,0.15);
+    position: relative;
+    overflow: hidden;
+  }
+  .letter-card::before {
+    content: '💌';
+    position: absolute;
+    top: -10px; right: 20px;
+    font-size: 2.5rem;
+    opacity: 0.15;
+    transform: rotate(15deg);
+  }
+
+  .letter-greeting {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.6rem;
+    color: var(--pink-deep);
+    margin-bottom: 20px;
+  }
+  .letter-body {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.97rem;
+    line-height: 1.9;
+    color: var(--text-dark);
+  }
+  .letter-body p { margin-bottom: 16px; }
+  .letter-body em { color: var(--pink-deep); font-style: italic; }
+  .letter-body .highlight {
+    background: linear-gradient(120deg, rgba(255,183,197,0.3), rgba(201,184,240,0.3));
+    border-radius: 6px;
+    padding: 2px 6px;
+  }
+  .letter-sign {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.4rem;
+    color: var(--lavender);
+    text-align: right;
+    margin-top: 20px;
+  }
+
+  /* ====== FOOTER ====== */
+  .footer-section {
+    background: linear-gradient(160deg, #FFE8F0, #EDE0FF, #D8F0FF);
+    text-align: center;
+    padding: 60px 24px 80px;
+  }
+  .footer-big {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.8rem;
+    color: var(--pink-deep);
+    margin-bottom: 12px;
+    text-shadow: 0 2px 16px var(--glow-pink);
+    line-height: 1.2;
+  }
+  .footer-sub {
+    font-size: 0.95rem;
+    color: var(--text-mid);
+    font-style: italic;
+    margin-bottom: 32px;
+  }
+  .heart-burst {
+    font-size: 1.8rem;
+    letter-spacing: 8px;
+    animation: sway 3s ease-in-out infinite;
+  }
+
+  /* ====== POPUP ====== */
+  #love-popup {
+    position: fixed;
+    bottom: 90px;
+    left: 50%;
+    transform: translateX(-50%) translateY(30px);
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(16px);
+    border-radius: 24px;
+    padding: 20px 28px;
+    max-width: 320px;
+    width: calc(100% - 40px);
+    text-align: center;
+    box-shadow: 0 8px 40px var(--glow-pink);
+    border: 1.5px solid rgba(255,183,197,0.4);
+    z-index: 8500;
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    pointer-events: none;
+  }
+  #love-popup.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    animation: glow-pulse 2s ease-in-out infinite;
+  }
+  #love-popup p {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.3rem;
+    color: var(--pink-deep);
+    line-height: 1.4;
+  }
+  @keyframes glow-pulse {
+    0%,100% { box-shadow: 0 8px 40px var(--glow-pink); }
+    50% { box-shadow: 0 8px 60px rgba(255,133,161,0.55); }
+  }
+
+  /* FLOATING HEARTS */
+  .floating-heart {
+    position: fixed;
+    pointer-events: none;
+    font-size: 1.2rem;
+    z-index: 4;
+    animation: float-heart linear forwards;
+    opacity: 0;
+  }
+  @keyframes float-heart {
+    0% { opacity: 0.8; transform: translateY(0) rotate(0deg) scale(1); }
+    100% { opacity: 0; transform: translateY(-120px) rotate(25deg) scale(0.5); }
+  }
+
+  /* BLOSSOM BURST OVERLAY */
+  #blossom-burst {
+    position: fixed;
+    inset: 0;
+    z-index: 8900;
+    pointer-events: none;
+    display: none;
+  }
+  .burst-petal {
+    position: absolute;
+    font-size: 1.5rem;
+    animation: burst-fly 1.2s ease-out forwards;
+    opacity: 1;
+  }
+  @keyframes burst-fly {
+    0% { transform: translate(0,0) scale(0.5) rotate(0deg); opacity: 1; }
+    100% { transform: translate(var(--dx), var(--dy)) scale(1.2) rotate(var(--dr)); opacity: 0; }
+  }
+
+  /* HAPPY BIRTHDAY REVEAL */
+  #bday-reveal {
+    position: fixed;
+    inset: 0;
+    z-index: 8800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+  #bday-reveal.show { opacity: 1; }
+  #bday-reveal .reveal-text {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3.2rem;
+    color: var(--pink-deep);
+    text-shadow: 0 4px 30px var(--glow-pink), 0 0 60px rgba(255,133,161,0.4);
+    text-align: center;
+    animation: reveal-pop 0.6s cubic-bezier(0.34,1.56,0.64,1) 0.1s both;
+    padding: 20px;
+  }
+  @keyframes reveal-pop {
+    from { transform: scale(0.4) rotate(-5deg); opacity: 0; }
+    to { transform: scale(1) rotate(0deg); opacity: 1; }
+  }
+
+  /* SCROLL ANIMATIONS */
+  .fade-in-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-in-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* RESPONSIVE */
+  @media (min-width: 400px) {
+    #typing-text { font-size: 2.8rem; }
+    .cards-grid { gap: 16px; }
+  }
+  @media (min-width: 600px) {
+    .cards-grid { grid-template-columns: repeat(3, 1fr); }
+    .about-card.wide { grid-column: auto; }
+    .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>
 </head>
 <body>
 
-    <!-- Scroll Progress -->
-    <div id="progress-bar"></div>
+<div id="progress-bar"></div>
+<canvas id="petal-canvas"></canvas>
 
-    <!-- Music Player -->
-    <audio id="bg-music" loop>
-        <source src="music.mp3" type="audio/mpeg">
-    </audio>
-    <div id="music-btn">🎵</div>
+<!-- MUSIC -->
+<audio id="bg-music" loop>
+  <source src="music.mp3" type="audio/mpeg"/>
+</audio>
+<button id="music-btn" title="Toggle music" aria-label="Toggle music">🎵</button>
 
-    <!-- Scroll Popup -->
-    <div id="scroll-popup">💌 I’m really happy you’re my girlfriend 💙</div>
+<!-- LOVE POPUP -->
+<div id="love-popup">
+  <p>💌 I'm really happy you're my girlfriend 💙</p>
+</div>
 
-    <!-- Petals Container -->
-    <div id="petals"></div>
+<!-- LIGHTBOX -->
+<div id="lightbox">
+  <button id="lightbox-close">✕</button>
+  <img id="lightbox-img" src="" alt="Memory"/>
+</div>
 
-    <!-- Lock Screen -->
-    <div id="lock-screen">
-        <div class="lock-card">
-            <h1>Who is the birthday girl’s favorite person? 🌸</h1>
-            <input type="text" id="lock-input" placeholder="Enter name..." autocomplete="off">
-            <button id="lock-btn">Unlock Gift</button>
-            <div class="error-msg" id="error-msg">Try again 💔</div>
-        </div>
+<!-- ====== LOCK SCREEN ====== -->
+<div id="lock-screen">
+  <div class="lock-gift-icon">🎁</div>
+  <div class="lock-title">A Secret Gift Awaits…</div>
+  <div class="lock-subtitle">Only her favorite person can open this 🌸</div>
+  <div class="lock-question">"Who is the birthday girl's favorite person?"</div>
+  <div class="lock-input-wrap">
+    <input class="lock-input" id="lock-input" type="text" placeholder="Type your answer…" autocomplete="off"/>
+  </div>
+  <button class="lock-btn" id="lock-btn">Open the Gift 💖</button>
+  <div class="lock-error" id="lock-error">Try again 💔 Don't give up!</div>
+  <div class="lock-petals-hint">🌸 🌸 🌸</div>
+</div>
+
+<!-- BLOSSOM BURST -->
+<div id="blossom-burst"></div>
+
+<!-- HAPPY BIRTHDAY REVEAL -->
+<div id="bday-reveal">
+  <div class="reveal-text">Happy Birthday 💖<br/><span style="font-size:1.8rem;color:var(--lavender)">Hikari ✨</span></div>
+</div>
+
+<!-- ====== MAIN PAGE ====== -->
+<div id="main-page">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-decoration d1"></div>
+    <div class="hero-decoration d2"></div>
+    <span class="hero-emoji">🌸</span>
+    <div class="typing-container">
+      <span id="typing-text"></span><span class="cursor"></span>
     </div>
-
-    <!-- Main Content -->
-    <div id="main-content">
-        <!-- Intro -->
-        <header class="intro-section">
-            <div class="typing-text" id="typing-text"></div><br>
-            <div class="typing-subtext" id="typing-subtext">You make everything feel softer… 🌸</div>
-        </header>
-
-        <!-- About Her Cards -->
-        <section class="about-grid">
-            <div class="card">
-                <div class="card-icon">🎂</div>
-                <div class="card-title">Birthday</div>
-                <div class="card-desc">June 18th</div>
-            </div>
-            <div class="card">
-                <div class="card-icon">💙</div>
-                <div class="card-title">Colors</div>
-                <div class="card-desc">Blue & Grey</div>
-            </div>
-            <div class="card">
-                <div class="card-icon">🎬</div>
-                <div class="card-title">Movies</div>
-                <div class="card-desc">Horror Vibes</div>
-            </div>
-            <div class="card">
-                <div class="card-icon">🌺</div>
-                <div class="card-title">Flowers</div>
-                <div class="card-desc">Hibiscus & Lily of the Valley</div>
-            </div>
-            <div class="card">
-                <div class="card-icon">🥲💔</div>
-                <div class="card-title">Allergies</div>
-                <div class="card-desc">Cabbages & Tea leaves</div>
-            </div>
-            <div class="card">
-                <div class="card-icon">✨</div>
-                <div class="card-title">Energy</div>
-                <div class="card-desc">Beautiful, Warm & Loving</div>
-            </div>
-        </section>
-
-        <!-- Birthday Letter -->
-        <section class="letter-section">
-            <div class="letter-title">To my beautiful Hikari ✨</div>
-            <div class="letter-text">
-                Happy Birthday, my gorgeous girl! 🎂 Even though we are long-distance right now, I wanted to make a little space just for you today, so you can feel exactly how special you are to me.<br><br>
-                You have this incredibly warm, loving, and beautiful energy that just makes everything in my life feel brighter and softer. It always makes me smile how much you love spooky horror movies, yet you are the kindest, softest person I know. Every time I see the colors blue and grey, or catch a glimpse of hibiscus and lily of the valley, my mind goes straight to you. 🌺💙<br><br>
-                I even love your quirky little allergies to cabbages and tea leaves—it’s all part of the Hikari I completely adore. I hope you get to celebrate big today with your two brothers and two sisters, and that you eat all the cake (strictly tea-leaf-free, of course!). <br><br>
-                Whenever I listen to <i>'All That Matters'</i>, it reminds me of us. I hope your June 18th is as gorgeous and magical as you are. I can't wait until I can celebrate with you in person.<br><br>
-                I’m really happy you’re my girlfriend. 💙
-            </div>
-            <div class="letter-signature">- Aiden 💖</div>
-        </section>
-
-        <!-- Memory Scrapbook -->
-        <section class="gallery-section">
-            <div class="gallery-header">
-                <h2 style="font-family: 'Quicksand'; color: var(--text); margin-bottom: 10px;">Our Memory Scrapbook 📖</h2>
-                <label class="upload-btn">
-                    + Add Memory
-                    <input type="file" id="image-upload" accept="image/*">
-                </label>
-            </div>
-            <div class="gallery-grid" id="gallery-grid">
-                <!-- Images will appear here -->
-            </div>
-        </section>
+    <p class="hero-sub">You make everything feel softer… 🌷</p>
+    <div class="hero-date-badge">🎂 June 18 — Her Special Day</div>
+    <div class="scroll-hint">
+      scroll to explore
+      <span>↓</span>
     </div>
+  </section>
 
-    <script>
-        // Elements
-        const lockScreen = document.getElementById('lock-screen');
-        const lockBtn = document.getElementById('lock-btn');
-        const lockInput = document.getElementById('lock-input');
-        const errorMsg = document.getElementById('error-msg');
-        const mainContent = document.getElementById('main-content');
-        const bgMusic = document.getElementById('bg-music');
-        const musicBtn = document.getElementById('music-btn');
-        
-        let isMusicPlaying = false;
-
-        // Music Toggle
-        musicBtn.addEventListener('click', () => {
-            if (isMusicPlaying) {
-                bgMusic.pause();
-                musicBtn.innerHTML = '🔇';
-            } else {
-                bgMusic.play().catch(e => console.log("Music play failed:", e));
-                musicBtn.innerHTML = '🎵';
-            }
-            isMusicPlaying = !isMusicPlaying;
-        });
-
-        // Lock Screen Logic
-        lockBtn.addEventListener('click', checkPassword);
-        lockInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') checkPassword();
-        });
-
-        function checkPassword() {
-            const val = lockInput.value.trim().toLowerCase();
-            if (val === 'aiden') {
-                // Success
-                lockScreen.style.opacity = '0';
-                setTimeout(() => {
-                    lockScreen.style.visibility = 'hidden';
-                    mainContent.style.display = 'block';
-                    setTimeout(() => {
-                        mainContent.style.opacity = '1';
-                        startTypingEffect();
-                        createPetals();
-                        // Try autoplaying music on mobile after interaction
-                        bgMusic.play().then(() => {
-                            isMusicPlaying = true;
-                            musicBtn.innerHTML = '🎵';
-                        }).catch(() => { console.log("Autoplay blocked by browser"); });
-                    }, 100);
-                }, 1000);
-            } else {
-                // Fail
-                lockScreen.classList.remove('shake');
-                void lockScreen.offsetWidth; // trigger reflow
-                lockScreen.classList.add('shake');
-                errorMsg.style.opacity = '1';
-                setTimeout(() => { errorMsg.style.opacity = '0'; }, 2000);
-            }
-        }
-
-        // Typing Effect
-        function startTypingEffect() {
-            const text = "Happy Birthday, Hikari ✨💖";
-            const el = document.getElementById('typing-text');
-            const sub = document.getElementById('typing-subtext');
-            let i = 0;
-            
-            function type() {
-                if (i < text.length) {
-                    el.innerHTML += text.charAt(i);
-                    i++;
-                    setTimeout(type, 100);
-                } else {
-                    sub.style.opacity = '1';
-                    sub.style.transform = 'translateY(0)';
-                }
-            }
-            setTimeout(type, 500);
-        }
-
-        // Falling Cherry Blossoms
-        function createPetals() {
-            const container = document.getElementById('petals');
-            const petalCount = 20; // Keep it light for mobile
-
-            for (let i = 0; i < petalCount; i++) {
-                let petal = document.createElement('div');
-                petal.classList.add('petal');
-                
-                // Random properties
-                let left = Math.random() * 100 + 'vw';
-                let animationDuration = Math.random() * 5 + 5 + 's';
-                let animationDelay = Math.random() * 10 + 's';
-                let size = Math.random() * 10 + 5 + 'px';
-                
-                petal.style.left = left;
-                petal.style.width = size;
-                petal.style.height = size;
-                petal.style.animationDuration = animationDuration;
-                petal.style.animationDelay = animationDelay;
-                
-                container.appendChild(petal);
-            }
-        }
-
-        // Scroll Logic (Progress Bar & Popup)
-        const progressBar = document.getElementById('progress-bar');
-        const scrollPopup = document.getElementById('scroll-popup');
-        let lastScrollY = window.scrollY;
-
-        window.addEventListener('scroll', () => {
-            let scrollTop = window.scrollY;
-            let docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            let scrollPercent = (scrollTop / docHeight) * 100;
-            
-            progressBar.style.width = scrollPercent + '%';
-
-            // Show popup at 80% scroll DOWN, hide on scroll UP
-            if (scrollPercent > 80 && scrollTop > lastScrollY) {
-                scrollPopup.classList.add('show');
-            } else {
-                scrollPopup.classList.remove('show');
-            }
-            lastScrollY = scrollTop;
-        });
-
-        // Memory Gallery (LocalStorage + Image Resize to prevent crashing)
-        const imageUpload = document.getElementById('image-upload'
-        // Init gallery
-        loadMemories();
-    </script>
-</body>
-</html>
+  <!-- ABOUT HER -->
+  <se
