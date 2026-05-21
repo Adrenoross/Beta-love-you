@@ -12,9 +12,20 @@
 
 body{
     font-family:'Quicksand',sans-serif;
-    background:linear-gradient(135deg,#fff5f8,#d5f7e8,#e6d4f5);
+    background:linear-gradient(135deg,#ffe6f2,#e6f0ff,#e6fff5);
     color:#5a4a6e;
     overflow-x:hidden;
+}
+
+/* 💖 LOVE BAR */
+#loveBar{
+    position:fixed;
+    top:0;
+    left:0;
+    height:4px;
+    width:0%;
+    background:linear-gradient(90deg,#ffb3d9,#b8f3d8,#c7b8ff);
+    z-index:9999;
 }
 
 /* 🌸 PETALS */
@@ -33,46 +44,56 @@ body{
     to{transform:translateY(110vh) rotate(360deg);}
 }
 
-/* 💖 LOVE BAR */
-#loveBar{
-    position:fixed;
-    top:0;
-    left:0;
-    height:4px;
-    width:0%;
-    background:linear-gradient(90deg,#ffb3d9,#ff6fae,#b8f3d8);
-    z-index:9999;
+/* HEADER */
+header{
+    text-align:center;
+    padding:80px 20px 20px;
 }
 
-/* FRAME */
-.frame{
-    position:fixed;
-    inset:10px;
-    border:2px dashed #ffb3d9;
+h1{
+    font-family:'Fredoka';
+    font-size:2rem;
+    background:linear-gradient(90deg,#ffb3d9,#b8f3d8,#c7b8ff);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+#typing{
+    margin-top:10px;
+    min-height:20px;
+    text-shadow:0 0 10px rgba(255,179,217,0.4);
+}
+
+/* SECTION */
+section{
+    max-width:900px;
+    margin:20px auto;
+    background:white;
+    padding:18px;
     border-radius:18px;
-    pointer-events:none;
-    z-index:10;
+    border:2px solid #ffd9e8;
+    box-shadow:0 10px 20px rgba(0,0,0,0.05);
 }
 
-/* 🔒 LOCK SCREEN */
+/* LOCK SCREEN */
 #lock{
     position:fixed;
     inset:0;
     background:rgba(0,0,0,0.92);
     display:flex;
     flex-direction:column;
-    align-items:center;
     justify-content:center;
-    z-index:99999;
+    align-items:center;
     color:white;
+    z-index:99999;
     text-align:center;
 }
 
 #lock input{
-    margin-top:10px;
     padding:10px;
-    border:none;
     border-radius:10px;
+    border:none;
+    margin-top:10px;
 }
 
 #lock button{
@@ -90,43 +111,12 @@ body{
     50%{transform:translateX(5px);}
 }
 
-/* HEADER */
-header{
-    text-align:center;
-    padding:80px 20px 20px;
-}
-
-h1{
-    font-family:'Fredoka';
-    font-size:2rem;
-    background:linear-gradient(90deg,#ffb3d9,#b8f3d8);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-}
-
-#typing{
-    margin-top:10px;
-    min-height:20px;
-    text-shadow:0 0 10px rgba(255,179,217,0.4);
-}
-
-/* SECTIONS */
-section{
-    max-width:900px;
-    margin:20px auto;
-    background:white;
-    padding:20px;
-    border-radius:18px;
-    border:2px solid #ffd9e8;
-}
-
 /* GALLERY */
 .gallery{
     display:flex;
     gap:10px;
     overflow-x:auto;
     scroll-snap-type:x mandatory;
-    padding:10px 0;
 }
 
 .gallery img{
@@ -139,8 +129,8 @@ section{
 
 /* UPLOAD */
 .upload{
-    text-align:center;
     margin-bottom:10px;
+    text-align:center;
 }
 
 /* 💌 LETTER */
@@ -164,25 +154,37 @@ section{
     text-align:center;
     transition:.6s;
     z-index:9999;
-    box-shadow:0 10px 30px rgba(0,0,0,0.2);
 }
-
 #confession.show{
     bottom:40px;
+}
+
+/* MUSIC */
+.music{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    width:55px;
+    height:55px;
+    background:#ffb3d9;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:22px;
+    z-index:100;
 }
 </style>
 </head>
 
 <body>
 
-<div class="frame"></div>
 <div id="loveBar"></div>
 
 <!-- 🔒 LOCK -->
 <div id="lock">
-<h2>Enter Her Name 💖</h2>
-<p>to unlock this world</p>
-<input id="nameInput" placeholder="type name...">
+<h2>Who is your favorite person?</h2>
+<input id="nameInput" placeholder="Type name...">
 <button onclick="unlock()">Unlock</button>
 <p id="error"></p>
 </div>
@@ -192,13 +194,15 @@ section{
 <source src="./song.mp3">
 </audio>
 
+<div class="music" onclick="document.getElementById('music').play()">🎵</div>
+
 <header>
 <h1>✿ For Hikari ✿</h1>
 <div id="typing"></div>
 </header>
 
 <section>
-<h2>Upload Memories 💖</h2>
+<h2>Memories 💖</h2>
 <div class="upload">
 <input type="file" id="fileInput" multiple accept="image/*">
 </div>
@@ -208,50 +212,51 @@ section{
 <section>
 <h2>About Her 🌸</h2>
 <p>
-💙 Fav color: Blue & Grey<br>
-🎬 Genre: Horror movies<br>
-🎵 Fav song: All That Matters<br>
-🌺 Flowers: Hibiscus & Lily of the Valley<br>
+💙 Blue & Grey<br>
+🎬 Horror movies<br>
+🌺 Hibiscus & Lily of the Valley<br>
+🎂 June 18<br>
 🥲 Allergic to cabbage & tea leaves<br>
-🎂 Birthday: June 18<br>
-👨‍👩‍👧‍👧 4 siblings (2 elder bros, 1 elder sis, 1 younger sis)
+👨‍👩‍👧‍👧 4 siblings<br>
+💖 Beautiful, warm, happy personality
 </p>
 </section>
 
 <section>
 <h2>Letter 💌</h2>
-<div class="letter" id="letter">
+<div class="letter">
 Hey Hikari,<br><br>
 
-I don’t even know how to start this properly, but I’ll try.<br><br>
+It’s crazy how someone I met not long ago already feels this important to me.<br><br>
 
-You’re someone who feels warm even through a screen. It’s crazy how someone I met not long ago already feels this important to me.<br><br>
+I love how your favorite color is blue and grey — it fits your calm and soft vibe so perfectly. I love that you enjoy horror movies even though they’re scary… it makes you even cooler.<br><br>
 
-I remember everything you told me — your favorite color being blue and grey, how you love horror movies, and how “All That Matters” feels like your song. I don’t know why, but now whenever I hear it, it reminds me of you.<br><br>
+Whenever I hear “All That Matters,” I think of you now. It somehow feels like your song.<br><br>
 
-You like hibiscus and lily of the valley — soft, pretty flowers, just like your vibe.<br><br>
+You like hibiscus and lily of the valley — soft and beautiful flowers, just like you.<br><br>
 
-And I also remember the small things… like you being allergic to cabbage and tea leaves 🥲💔 I promise I’ll never forget that.<br><br>
+And I still remember the small things… like you being allergic to cabbage and tea leaves 🥲💔 I won’t forget that.<br><br>
 
-You have such a beautiful family too — 2 elder brothers, 1 elder sister, and a younger sister. It sounds loud, chaotic, and full of life… kind of like something you’d belong in perfectly.<br><br>
+Your birthday on June 18 feels special to me now too.<br><br>
 
-I hope your birthday on June 18 is always special, even if I’m not always there in person.<br><br>
+You have such a beautiful family — 2 elder brothers, 1 elder sister, and 1 younger sister. It sounds full of life, just like you.<br><br>
 
-I don’t know what this is becoming between us, but I do know I like talking to you. A lot.<br><br>
+Even though this is long distance and only about a month, talking to you already means a lot to me.<br><br>
 
-And maybe… I like you more than I planned to.<br><br>
+And maybe… just maybe… I like you more than I planned to.<br><br>
 
 </div>
 </section>
 
 <!-- 💌 CONFESSION -->
 <div id="confession">
-I think I like you more than I expected… 💖
+💌 I think I like you more than I planned to…
 </div>
 
+<!-- SCRIPTS -->
 <script>
 
-/* PETALS */
+/* 🌸 PETALS */
 function petal(){
     const p=document.createElement("div");
     p.className="petal";
@@ -262,20 +267,21 @@ function petal(){
 }
 setInterval(petal,200);
 
-/* LOCK */
+/* 🔒 LOCK */
 function unlock(){
     const val=document.getElementById("nameInput").value.toLowerCase().trim();
-    if(val==="hikari"){
+    if(val==="aiden"){
         document.getElementById("lock").style.display="none";
         document.getElementById("music").play();
+        document.body.style.overflow="auto";
     }else{
-        document.getElementById("error").innerText="Wrong name 💔";
+        document.getElementById("error").innerText="Try again 💔";
         document.getElementById("lock").classList.add("shake");
         setTimeout(()=>document.getElementById("lock").classList.remove("shake"),300);
     }
 }
 
-/* TYPING */
+/* ✍️ TYPING */
 const text="You make everything feel softer… ✨";
 let i=0;
 function type(){
@@ -286,7 +292,7 @@ function type(){
 }
 type();
 
-/* UPLOAD + SAVE */
+/* 📸 UPLOAD + SAVE */
 const input=document.getElementById("fileInput");
 const gallery=document.getElementById("gallery");
 
@@ -305,7 +311,7 @@ render();
 input.addEventListener("change",e=>{
     [...e.target.files].forEach(file=>{
         const reader=new FileReader();
-        reader.onload=function(ev){
+        reader.onload=ev=>{
             saved.push(ev.target.result);
             localStorage.setItem("imgs",JSON.stringify(saved));
             render();
@@ -314,19 +320,16 @@ input.addEventListener("change",e=>{
     });
 });
 
-/* LOVE BAR */
+/* 💖 LOVE BAR + CONFESSION */
 window.addEventListener("scroll",()=>{
     const h=document.documentElement.scrollHeight-window.innerHeight;
     const s=(window.scrollY/h)*100;
+
     document.getElementById("loveBar").style.width=s+"%";
 
-    /* CONFESSION AT 80% */
     const pop=document.getElementById("confession");
-    if(s>80){
-        pop.classList.add("show");
-    }else{
-        pop.classList.remove("show");
-    }
+    if(s>80) pop.classList.add("show");
+    else pop.classList.remove("show");
 });
 
 </script>
