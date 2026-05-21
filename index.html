@@ -702,9 +702,7 @@
 <canvas id="petal-canvas"></canvas>
 
 <!-- MUSIC -->
-<audio id="bg-music" loop>
-  <source src="music.mp3" type="audio/mpeg"/>
-</audio>
+<audio id="bg-music" loop preload="auto"></audio>
 <button id="music-btn" title="Toggle music" aria-label="Toggle music">🎵</button>
 
 <!-- LOVE POPUP -->
@@ -936,9 +934,37 @@ setInterval(spawnHeart, 3500);
 const music = document.getElementById('bg-music');
 const musicBtn = document.getElementById('music-btn');
 let playing = false;
+
+function startMusic() {
+  music.src = 'music.mp3';
+  music.load();
+  const playPromise = music.play();
+  if(playPromise !== undefined) {
+    playPromise.then(() => {
+      playing = true;
+      musicBtn.textContent = '⏸️';
+    }).catch(() => {
+      playing = false;
+      musicBtn.textContent = '🎵';
+    });
+  }
+}
+
 musicBtn.addEventListener('click', () => {
-  if(playing) { music.pause(); musicBtn.textContent = '🎵'; playing = false; }
-  else { music.play().catch(()=>{}); musicBtn.textContent = '⏸️'; playing = true; }
+  if(playing) {
+    music.pause();
+    musicBtn.textContent = '🎵';
+    playing = false;
+  } else {
+    if(!music.src || music.src === window.location.href) {
+      startMusic();
+    } else {
+      music.play().then(() => {
+        playing = true;
+        musicBtn.textContent = '⏸️';
+      }).catch(()=>{});
+    }
+  }
 });
 
 // ============ LOCK SCREEN ============
@@ -979,9 +1005,7 @@ function doUnlock() {
       blossomBurst.style.display = 'none';
       bdayReveal.classList.remove('show');
       startTyping();
-      music.play().catch(()=>{});
-      musicBtn.textContent = '⏸️';
-      playing = true;
+      startMusic();
     }, 2200);
   } else {
     lockInput.classList.add('shake');
@@ -1125,6 +1149,3 @@ lightbox.addEventListener('click', (e) => { if(e.target === lightbox) lightbox.c
 </script>
 </body>
 </html>
-<audio id="bg-music" loop>
-  <source src="music.mp3" type="audio/mpeg"/>
-</audio>
