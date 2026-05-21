@@ -230,3 +230,235 @@ document.querySelectorAll('nav a').forEach(a => {
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Hikari ✿</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+    font-family:'Quicksand',sans-serif;
+    background: linear-gradient(135deg,#fff5f8,#d5f7e8,#e6d4f5);
+    overflow-x:hidden;
+    color:#5a4a6e;
+}
+
+/* 🌸 PETALS */
+.petal {
+    position: fixed;
+    top: -10px;
+    width: 12px;
+    height: 12px;
+    background: pink;
+    border-radius: 50%;
+    opacity: 0.7;
+    animation: fall linear infinite;
+    z-index: 1;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(360deg);
+    }
+}
+
+/* FRAME */
+.frame{
+    position:fixed;
+    inset:10px;
+    border:2px dashed #ffb3d9;
+    pointer-events:none;
+    z-index:10;
+}
+
+/* HEADER MOBILE ROMANTIC UI */
+header{
+    text-align:center;
+    padding:60px 20px 30px;
+}
+
+h1{
+    font-family:'Fredoka';
+    font-size:2rem;
+    background:linear-gradient(90deg,#ffb3d9,#b8f3d8);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+#typing{
+    margin-top:10px;
+    font-size:1rem;
+    min-height:20px;
+}
+
+/* NAV */
+nav{
+    display:flex;
+    gap:8px;
+    justify-content:center;
+    flex-wrap:wrap;
+    padding:10px;
+}
+
+nav a{
+    background:white;
+    padding:8px 12px;
+    border-radius:12px;
+    border:1px solid #ffb3d9;
+    text-decoration:none;
+    font-size:12px;
+}
+
+/* SECTIONS */
+section{
+    max-width:900px;
+    margin:20px auto;
+    background:white;
+    padding:20px;
+    border-radius:18px;
+    border:2px solid #ffd9e8;
+}
+
+/* 💌 hidden message */
+.hidden-message{
+    opacity:0;
+    transform:translateY(20px);
+    transition:1s;
+    background:#fff0f6;
+    padding:15px;
+    border-radius:12px;
+    border:1px dashed #ffb3d9;
+}
+
+.hidden-message.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* FLOAT BUTTON */
+.music{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    background:#ffb3d9;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+    z-index:100;
+}
+</style>
+</head>
+
+<body>
+
+<div class="frame"></div>
+
+<!-- 🌸 PETALS -->
+<script>
+function createPetal(){
+    const petal=document.createElement("div");
+    petal.classList.add("petal");
+    petal.style.left=Math.random()*100+"vw";
+    petal.style.animationDuration=(3+Math.random()*5)+"s";
+    document.body.appendChild(petal);
+
+    setTimeout(()=>petal.remove(),8000);
+}
+setInterval(createPetal,200);
+</script>
+
+<!-- 🎵 MUSIC -->
+<audio id="bg-music" loop>
+<source src="./song.mp3" type="audio/mpeg">
+</audio>
+
+<div class="music" onclick="document.getElementById('bg-music').play()">🎵</div>
+
+<!-- HEADER -->
+<header>
+<h1>✿ Happy Birthday Hikari ✿</h1>
+<div id="typing"></div>
+</header>
+
+<!-- NAV -->
+<nav>
+<a href="#about">About</a>
+<a href="#story">Story</a>
+<a href="#letter">Letter 💌</a>
+</nav>
+
+<!-- ABOUT -->
+<section id="about">
+<h2>About Her</h2>
+<p>Blue • Grey • Horror movies • All That Matters 🎵</p>
+</section>
+
+<!-- STORY -->
+<section id="story">
+<h2>Our Story</h2>
+<p>We met recently… but it already feels special.</p>
+</section>
+
+<!-- LETTER (UNLOCK EFFECT) -->
+<section id="letter">
+<h2>Letter</h2>
+
+<div class="hidden-message" id="message">
+💌  
+Happy Birthday Hikari…  
+You already mean a lot to me.  
+</div>
+
+</section>
+
+<!-- SCRIPTS -->
+<script>
+
+/* ⌨️ TYPING INTRO */
+const text="You make this world feel softer… ✨";
+let i=0;
+function type(){
+    if(i<text.length){
+        document.getElementById("typing").innerHTML+=text.charAt(i);
+        i++;
+        setTimeout(type,60);
+    }
+}
+type();
+
+/* 💌 UNLOCK ON SCROLL */
+const msg=document.getElementById("message");
+
+const observer=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+        if(entry.isIntersecting){
+            msg.classList.add("show");
+        }
+    });
+},{threshold:0.5});
+
+observer.observe(document.getElementById("letter"));
+
+/* NAV SMOOTH SCROLL */
+document.querySelectorAll("nav a").forEach(a=>{
+a.addEventListener("click",e=>{
+e.preventDefault();
+document.querySelector(a.getAttribute("href"))
+.scrollIntoView({behavior:"smooth"});
+});
+});
+
+</script>
+
+</body>
+</html>
